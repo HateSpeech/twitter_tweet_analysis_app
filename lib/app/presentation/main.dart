@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:twittertweetanalysisapp/app/data/repository/local/LocalRepositoryImpl.dart';
+import 'package:twittertweetanalysisapp/app/data/repository/remote/RemoteRepositoryImpl.dart';
 import 'package:twittertweetanalysisapp/app/domain/interactors/GetTweet.dart';
 
 import 'model/Tweet.dart';
@@ -8,13 +10,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  var getTweet = GetTweet().withParms("abc123");
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var tweet = Tweet(this.getTweet.execute());
-
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -33,12 +31,15 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: "${tweet.id} - ${tweet.date}"),
+      home: MyHomePage(title: "View Tweet"),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  // TODO: Add dependency injection
+  var getTweet = GetTweet(LocalRepositoryImpl(), RemoteRepositoryImpl()).withParms("abc123");
+
   MyHomePage({Key key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -78,6 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
+    var tweet = Tweet(widget.getTweet.execute());
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -105,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              "${tweet.msg} - ${tweet.date}",
             ),
             Text(
               '$_counter',

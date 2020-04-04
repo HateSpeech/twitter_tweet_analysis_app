@@ -1,10 +1,20 @@
 import 'package:twittertweetanalysisapp/app/domain/core/Interactor.dart';
 import 'package:twittertweetanalysisapp/app/domain/core/exceptions/InvalidTweetIdException.dart';
 import 'package:twittertweetanalysisapp/app/domain/model/TweetDomainModel.dart';
+import 'package:twittertweetanalysisapp/app/domain/repository/local/LocalRepository.dart';
+import 'package:twittertweetanalysisapp/app/domain/repository/remote/RemoteRepository.dart';
 
-class GetTweet implements Interactor<TweetDomainModel> {
+class GetTweet implements Interactor<TweetDomainModel, TweetDomainModel> {
 
   String _tweetId;
+
+  @override
+  LocalRepository localRepository;
+
+  @override
+  RemoteRepository remoteRepository;
+
+  GetTweet(this.localRepository, this.remoteRepository);
 
   @override
   TweetDomainModel execute() {
@@ -12,7 +22,15 @@ class GetTweet implements Interactor<TweetDomainModel> {
       throw InvalidTweetIdException(_tweetId, "Invalid tweetId");
     }
 
-    return TweetDomainModel(_tweetId, "", DateTime.now());
+    var cachedObject = localRepository.get(TweetDomainModel.cacheKey, id: _tweetId);
+    if (cachedObject != null) {
+      return cachedObject;
+    }
+
+    var remoteObject = remoteRepository.getTweet(_tweetId);
+    localRepository.put(TweetDomainModel.cacheKey, remoteObject, true);
+
+    return remoteObject;
   }
 
   GetTweet withParms(String tweetId) {

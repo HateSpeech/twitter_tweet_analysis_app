@@ -2,6 +2,7 @@ import 'package:twittertweetanalysisapp/app/domain/model/TweetDomainModel.dart';
 import 'package:twittertweetanalysisapp/app/presentation/core/PresentationModel.dart';
 
 class Tweet extends PresentationModel<TweetDomainModel> {
+
   String id;
   String msg;
   DateTime date;
@@ -14,7 +15,7 @@ class Tweet extends PresentationModel<TweetDomainModel> {
 
   @override
   TweetDomainModel asDomainModel() {
-    throw UnimplementedError();
+    return TweetDomainModel(id, msg, date);
   }
 
 }
