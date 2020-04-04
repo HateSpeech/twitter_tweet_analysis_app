@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:twittertweetanalysisapp/app/domain/interactors/GetTweet.dart';
+
+import 'model/Tweet.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  var getTweet = GetTweet().withParms("abc123");
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var tweet = Tweet(this.getTweet.execute());
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -26,7 +33,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: "${tweet.id} - ${tweet.date}"),
     );
   }
 }
