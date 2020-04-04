@@ -4,17 +4,27 @@ import 'package:twittertweetanalysisapp/app/domain/repository/local/LocalReposit
 class LocalRepositoryImpl extends LocalRepository {
 
   @override
-  bool delete(String cacheKey) {
-    return true;
-  }
-
-  @override
-  DomainModel get(String cacheKey, {id = String}) {
+  DomainModel getObject(String cacheKey, {id = String}) {
     return null;
   }
 
   @override
-  bool put(String cacheKey, DomainModel model, bool override, {cacheLimitDate = DateTime}) {
+  List<DomainModel> getList(String cacheKey, {id = String}) {
+    return null;
+  }
+
+  @override
+  bool putObject(String cacheKey, DomainModel model, bool override, {cacheLimitDate = DateTime}) {
+    return true;
+  }
+
+  @override
+  bool putList(String cacheKey, List<DomainModel> modelList, bool override, {cacheLimitDate = DateTime}) {
+    return true;
+  }
+
+  @override
+  bool delete(String cacheKey) {
     return true;
   }
 

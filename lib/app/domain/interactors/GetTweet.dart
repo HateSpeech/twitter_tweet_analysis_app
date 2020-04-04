@@ -22,13 +22,13 @@ class GetTweet implements Interactor<TweetDomainModel, TweetDomainModel> {
       throw InvalidTweetIdException(_tweetId, "Invalid tweetId");
     }
 
-    var cachedObject = localRepository.get(TweetDomainModel.cacheKey, id: _tweetId);
+    var cachedObject = localRepository.getObject(TweetDomainModel.cacheKey, id: _tweetId);
     if (cachedObject != null) {
       return cachedObject;
     }
 
     var remoteObject = remoteRepository.getTweet(_tweetId);
-    localRepository.put(TweetDomainModel.cacheKey, remoteObject, true);
+    localRepository.putObject(TweetDomainModel.cacheKey, remoteObject, true);
 
     return remoteObject;
   }

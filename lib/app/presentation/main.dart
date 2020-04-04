@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twittertweetanalysisapp/app/data/repository/local/LocalRepositoryImpl.dart';
 import 'package:twittertweetanalysisapp/app/data/repository/remote/RemoteRepositoryImpl.dart';
+import 'package:twittertweetanalysisapp/app/domain/interactors/GetClassifications.dart';
 import 'package:twittertweetanalysisapp/app/domain/interactors/GetTweet.dart';
 
 import 'model/Tweet.dart';
@@ -37,9 +38,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  // TODO: Add dependency injection
-  var getTweet = GetTweet(LocalRepositoryImpl(), RemoteRepositoryImpl()).withParms("abc123");
-
   MyHomePage({Key key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -73,6 +71,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Add dependency injection
+    var localRepository = LocalRepositoryImpl();
+    var remoteRepository = RemoteRepositoryImpl();
+
+    var getTweet = GetTweet(localRepository, remoteRepository).withParms("abc123");
+    var tweet = Tweet(getTweet.execute());
+
+    var getClassifications = GetClassifications(localRepository, remoteRepository);
+    var classifications = getClassifications.execute();
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -80,7 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
 
-    var tweet = Tweet(widget.getTweet.execute());
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
