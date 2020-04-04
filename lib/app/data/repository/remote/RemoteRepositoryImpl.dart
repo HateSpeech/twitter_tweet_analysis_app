@@ -7,7 +7,7 @@ class RemoteRepositoryImpl extends RemoteRepository {
   @override
   TweetDomainModel getTweet(String tweetId) {
     // TODO: Connect to API
-    var tweet = TweetEntity(tweetId, "This is a tweet bod from remote repository", DateTime.now());
+    var tweet = TweetEntity(tweetId, "1050118621198921728", "This is a tweet bod from remote repository");
     return tweet.asDomainModel();
   }
 

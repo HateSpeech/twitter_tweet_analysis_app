@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "${tweet.msg} - ${tweet.date}",
+              "[tweet_twitter_id: ${tweet.tweetTwitterId}] - content: ${tweet.content}",
             ),
             Text(
               '$_counter',

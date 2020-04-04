@@ -4,14 +4,14 @@ class TweetDomainModel extends DomainModel {
 
   static String cacheKey = "TWEET_DOMAIN_MODEL";
 
-  String id;
-  String msg;
-  DateTime date;
+  String tweetId;
+  String tweetTwitterId;
+  String content;
 
-  TweetDomainModel(String id, String msg, DateTime date, {String user}) {
-    this.id = id;
-    this.msg = msg;
-    this.date = date;
+  TweetDomainModel(String tweetId, String tweetTwitterId, String content) {
+    this.tweetId = tweetId;
+    this.tweetTwitterId = tweetTwitterId;
+    this.content = content;
   }
 
 }

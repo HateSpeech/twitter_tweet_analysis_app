@@ -3,19 +3,19 @@ import 'package:twittertweetanalysisapp/app/presentation/core/PresentationModel.
 
 class Tweet extends PresentationModel<TweetDomainModel> {
 
-  String id;
-  String msg;
-  DateTime date;
+  String tweetId;
+  String tweetTwitterId;
+  String content;
 
   Tweet(TweetDomainModel domainModel) {
-    this.id = domainModel.id;
-    this.msg = domainModel.msg;
-    this.date = domainModel.date;
+    this.tweetId = domainModel.tweetId;
+    this.tweetTwitterId = domainModel.tweetTwitterId;
+    this.content = domainModel.content;
   }
 
   @override
   TweetDomainModel asDomainModel() {
-    return TweetDomainModel(id, msg, date);
+    return TweetDomainModel(tweetId, tweetTwitterId, content);
   }
 
 }
