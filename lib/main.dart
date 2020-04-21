@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:twittertweetanalysisapp/presentation/view/home/home_page.dart';
 
-import 'presentation/view/TweetView.dart';
+import 'presentation/view/home/tweet_view_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,12 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'tweet.analysis',
 
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: TweetView(),
+
+      home: HomePage(),
     );
   }
 }

@@ -29,6 +29,8 @@ dependencies:
 
   # Presentation Layer
   division: "0.8.8"
+  google_fonts: "0.6.2"
+  flutter_svg: "0.17.4"
 
   flutter:
     sdk: flutter
@@ -52,6 +54,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
