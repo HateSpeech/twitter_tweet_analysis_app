@@ -6,7 +6,7 @@ import 'package:twittertweetanalysisapp/domain/repository/remote/RemoteRepositor
 
 class GetTweet implements Interactor<TweetDomainModel, TweetDomainModel> {
 
-  String _tweetId;
+  String _tweetURL;
 
   @override
   LocalRepository localRepository;
@@ -18,23 +18,19 @@ class GetTweet implements Interactor<TweetDomainModel, TweetDomainModel> {
 
   @override
   TweetDomainModel execute() {
-    if (_tweetId == null || _tweetId.isEmpty) {
-      throw InvalidTweetIdException(_tweetId, "Invalid tweetId");
-    }
-
-    var cachedObject = localRepository.getObject(TweetDomainModel.cacheKey, id: _tweetId);
+    var cachedObject = localRepository.getObject(TweetDomainModel.cacheKey, id: _tweetURL);
     if (cachedObject != null) {
       return cachedObject;
     }
 
-    var remoteObject = remoteRepository.getTweet(_tweetId);
+    var remoteObject = remoteRepository.getTweet(tweetURL: _tweetURL);
     localRepository.putObject(TweetDomainModel.cacheKey, remoteObject, true);
 
     return remoteObject;
   }
 
-  GetTweet withParms(String tweetId) {
-    _tweetId = tweetId;
+  GetTweet withParms({String tweetURL}) {
+    _tweetURL = tweetURL;
     return this;
   }
 

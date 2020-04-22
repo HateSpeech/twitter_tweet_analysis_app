@@ -36,7 +36,13 @@ class AppStyles {
   ..fontFamily(GoogleFonts.roboto().fontFamily)
   ..alignment.center()
   ..margin(right: 87, left: 87)
+  ..textAlign.justify()
   ..textColor(AppColors.charcoal);
+
+  /* TweetSwipeRightImage */
+  static var tweetSwipeRightImage = ParentStyle()
+    ..margin(bottom: 15, right: 15)
+    ..alignment.bottomRight();
 
   /* TweetAnalysisButton */
 static var tweetAnalysisButton = ParentStyle()

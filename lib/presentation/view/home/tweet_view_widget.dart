@@ -1,10 +1,12 @@
 import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:twittertweetanalysisapp/data/repository/local/LocalRepositoryImpl.dart';
+import 'package:twittertweetanalysisapp/data/repository/remote/RemoteRepositoryImpl.dart';
+import 'package:twittertweetanalysisapp/domain/interactors/GetClassifications.dart';
+import 'package:twittertweetanalysisapp/domain/interactors/GetTweet.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_styles.dart';
-
-import 'page_title_widget.dart';
 
 class TweetViewWidget extends StatefulWidget {
   TweetViewWidget({Key key}) : super(key: key);
@@ -14,6 +16,34 @@ class TweetViewWidget extends StatefulWidget {
 }
 
 class _TweetViewWidgetState extends State<TweetViewWidget> {
+  // TODO: Create the presenter and dependency injection
+  var _localRepository = LocalRepositoryImpl();
+  var _remoteRepository = RemoteRepositoryImpl();
+
+  var getTweet;
+  var getClassifications;
+
+  var _tweet;
+  var _classifications;
+
+  _TweetViewWidgetState() {
+    getTweet = GetTweet(_localRepository, _remoteRepository);
+    getClassifications = GetClassifications(_localRepository, _remoteRepository);
+    _tweet = getTweet.execute();
+  }
+
+  _loadRandomTweet() {
+    setState(() {
+      _tweet = getTweet.execute();
+    });
+  }
+
+  _loadClassifications() {
+    setState(() {
+      _classifications = getClassifications.execute();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Parent(
@@ -21,7 +51,8 @@ class _TweetViewWidgetState extends State<TweetViewWidget> {
         child: Stack(
           children: [
             Parent(child: AppImages.quote, style: AppStyles.tweetQuoteImage),
-            Txt("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat mas", style: AppStyles.tweetText)
+            Txt(_tweet.content, style: AppStyles.tweetText),
+            GestureDetector(onTap: _loadRandomTweet, child: Parent(child: AppImages.swipeRight, style: AppStyles.tweetSwipeRightImage))
           ]
       )
     );

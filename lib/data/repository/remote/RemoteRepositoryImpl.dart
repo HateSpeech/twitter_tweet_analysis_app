@@ -7,9 +7,15 @@ import 'package:twittertweetanalysisapp/domain/repository/remote/RemoteRepositor
 class RemoteRepositoryImpl extends RemoteRepository {
 
   @override
-  TweetDomainModel getTweet(String tweetId) {
+  TweetDomainModel getTweet({String tweetURL}) {
     // TODO: Connect to API
-    var tweet = TweetEntity(tweetId, "1050118621198921728", "This is a tweet bod from remote repository");
+    if (tweetURL == null) {
+      var tweet = TweetEntity(tweetURL, "1050118621198921728", "This is a RANDOM tweet body from remote repository");
+      return tweet.asDomainModel();
+    }
+
+    // TODO: Connect to API
+    var tweet = TweetEntity(tweetURL, "1050118621198921728", "This is a SPECIFIC tweet body from remote repository");
     return tweet.asDomainModel();
   }
 
