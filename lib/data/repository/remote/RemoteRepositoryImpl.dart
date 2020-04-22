@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:twittertweetanalysisapp/data/entity/ClassificationEntity.dart';
 import 'package:twittertweetanalysisapp/data/entity/TweetEntity.dart';
 import 'package:twittertweetanalysisapp/domain/model/ClassificationDomainModel.dart';
@@ -10,7 +12,7 @@ class RemoteRepositoryImpl extends RemoteRepository {
   TweetDomainModel getTweet({String tweetURL}) {
     // TODO: Connect to API
     if (tweetURL == null) {
-      var tweet = TweetEntity(tweetURL, "1050118621198921728", "This is a RANDOM tweet body from remote repository");
+      var tweet = TweetEntity(tweetURL, "1050118621198921728", "This is a RANDOM(${Random.secure().nextInt(1000)}) tweet body from remote repository");
       return tweet.asDomainModel();
     }
 
