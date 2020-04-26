@@ -1,4 +1,5 @@
 import 'package:division/division.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
@@ -10,12 +11,17 @@ class AppStyles {
   static get _defaultRadius => 15.0;
 
   // HomePageTitle
-  static get pageTitle => TxtStyle()
-    ..fontSize(18)
+  static get homePageTitle => TxtStyle()
+    ..fontSize(11)
     ..fontFamily(GoogleFonts.roboto().fontFamily)
-    ..textColor(AppColors.carolinaBlue)
+    ..textColor(AppColors.cultured)
     ..alignment.topLeft()
-    ..padding(bottom: 32);
+    ..margin(left: 16);
+
+  // HomePageContainer
+  static get homePageContainer => ParentStyle()
+    ..width(600)
+    ..alignment.center();
 
   // TweetAnalysisButton
   static get tweetAnalysisButton => ParentStyle()
@@ -28,15 +34,12 @@ class AppStyles {
 
   // SearchBoxWidget
   static get searchBox => ParentStyle()
-    ..alignment.topCenter()
-    ..width(600)
     ..height(80)
     ..borderRadius(topLeft: _defaultRadius, topRight: _defaultRadius)
     ..background.color(AppColors.radicalRed);
 
   // SearchBoxInputWidget
-  static get searchBoxInput => ParentStyle()
-    ..background.color(AppColors.carolinaBlue);
+  static get searchBoxInput => ParentStyle();
 
   // SearchBoxHintWidget
   static get searchBoxHint => TxtStyle()
@@ -46,14 +49,12 @@ class AppStyles {
     ..textColor(AppColors.charcoal);
 
   // SearchImage
-  static get searchImage => ParentStyle()
-    ..background.color(AppColors.radicalRed);
+  static get searchImage => ParentStyle();
 
   // TweetBoxWidget
   static get tweetBox => ParentStyle()
-    ..alignment.center()
-    ..width(600)
     ..height(300)
+    ..margin(top: 57)
     ..borderRadius(all: _defaultRadius)
     ..background.color(AppColors.cultured);
 
