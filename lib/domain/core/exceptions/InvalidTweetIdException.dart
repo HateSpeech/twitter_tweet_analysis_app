@@ -1,8 +1,8 @@
-class InvalidTweetIdException implements Exception {
+class InvalidTweetURLException implements Exception {
 
-  String _tweetId;
+  String _tweetURL;
   String _errorMsg;
 
-  InvalidTweetIdException(_tweetId, _errorMsg);
+  InvalidTweetURLException(_tweetURL, _errorMsg);
 
 }

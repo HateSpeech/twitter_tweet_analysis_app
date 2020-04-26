@@ -12,7 +12,7 @@ class RemoteRepositoryImpl extends RemoteRepository {
   TweetDomainModel getTweet({String tweetURL}) {
     // TODO: Connect to API
     if (tweetURL == null) {
-      var tweet = TweetEntity(tweetURL, "1050118621198921728", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat mas");
+      var tweet = TweetEntity(tweetURL, "1050118621198921728", "This is a RANDOM(${Random.secure().nextInt(1000)}) tweet body from remote repository");
       return tweet.asDomainModel();
     }
 

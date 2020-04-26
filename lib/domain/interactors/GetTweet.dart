@@ -3,10 +3,13 @@ import 'package:twittertweetanalysisapp/domain/core/exceptions/InvalidTweetIdExc
 import 'package:twittertweetanalysisapp/domain/model/TweetDomainModel.dart';
 import 'package:twittertweetanalysisapp/domain/repository/local/LocalRepository.dart';
 import 'package:twittertweetanalysisapp/domain/repository/remote/RemoteRepository.dart';
+import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 
 class GetTweet implements Interactor<TweetDomainModel, TweetDomainModel> {
 
   String _tweetURL;
+
+  static var urlMaxLenght = 80;
 
   @override
   LocalRepository localRepository;
@@ -18,6 +21,10 @@ class GetTweet implements Interactor<TweetDomainModel, TweetDomainModel> {
 
   @override
   TweetDomainModel execute() {
+    if (_tweetURL != null && _tweetURL.length >= urlMaxLenght) {
+      throw InvalidTweetURLException(_tweetURL, AppStrings.invalidTweetURL);
+    }
+
     var cachedObject = localRepository.getObject(TweetDomainModel.cacheKey, id: _tweetURL);
     if (cachedObject != null) {
       return cachedObject;
