@@ -48,7 +48,7 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> implements TweetBoxView
             children: [
               Parent(child: AppImages.quote, style: AppStyles.quoteImage),
               Txt(_tweet.content, style: AppStyles.tweetText),
-              GestureDetector(onTap: _presenter.loadRandomTweet, child: Parent(child: AppImages.swipeRight, style: AppStyles.tweetSwipeRightImage))
+              GestureDetector(onTap: _presenter.loadRandomTweet, child: Parent(child: AppImages.swipeRight, style: AppStyles.swipeRightImage))
             ]
         )
     );

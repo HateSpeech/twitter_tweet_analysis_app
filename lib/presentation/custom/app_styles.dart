@@ -16,27 +16,19 @@ class AppStyles {
     ..fontFamily(GoogleFonts.roboto().fontFamily)
     ..textColor(AppColors.cultured)
     ..alignment.topLeft()
-    ..margin(left: 16);
+    ..margin(left: 16, bottom: 8);
 
   // HomePageContainer
   static get homePageContainer => ParentStyle()
     ..width(600)
-    ..alignment.center();
-
-  // TweetAnalysisButton
-  static get tweetAnalysisButton => ParentStyle()
-    ..alignment.bottomCenter()
-    ..margin(top: 30)
-    ..width(90)
-    ..height(90)
-    ..borderRadius(all: 45)
-    ..background.color(AppColors.radicalRed);
+    ..alignment.center()
+    ..background.color(Colors.green);
 
   // SearchBoxWidget
   static get searchBox => ParentStyle()
     ..height(80)
     ..borderRadius(topLeft: _defaultRadius, topRight: _defaultRadius)
-    ..background.color(AppColors.radicalRed);
+    ..background.color(AppColors.gray3);
 
   // SearchBoxInputWidget
   static get searchBoxInput => ParentStyle();
@@ -53,28 +45,34 @@ class AppStyles {
 
   // TweetBoxWidget
   static get tweetBox => ParentStyle()
-    ..height(300)
-    ..margin(top: 57)
     ..borderRadius(all: _defaultRadius)
-    ..background.color(AppColors.cultured);
+    ..background.color(AppColors.cultured)
+    ..margin(top: 57, bottom: 45);
 
   // QuoteImage
   static get quoteImage => ParentStyle()
-    ..margin(left: 37, top: 37)
-    ..alignment.topLeft();
+    ..margin(top: 23, left: 23);
 
   // TweetTextWidget
   static get tweetText => TxtStyle()
+    ..width(450)
     ..fontSize(18)
     ..fontFamily(GoogleFonts.roboto().fontFamily)
     ..alignment.center()
-    ..margin(right: 87, left: 87)
     ..textAlign.justify()
     ..textColor(AppColors.charcoal);
 
   // TweetSwipeRightImage
-  static get tweetSwipeRightImage => ParentStyle()
-    ..margin(bottom: 15, right: 15)
+  static get swipeRightImage => ParentStyle()
+    ..margin(bottom: 23, right: 23)
     ..alignment.bottomRight();
+
+  // TweetAnalysisButton
+  static get tweetAnalysisButton => ParentStyle()
+    ..width(90)
+    ..height(90)
+    ..borderRadius(all: 45)
+    ..background.color(AppColors.radicalRed)
+    ..alignment.bottomCenter();
 
 }

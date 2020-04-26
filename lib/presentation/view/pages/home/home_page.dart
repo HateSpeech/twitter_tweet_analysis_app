@@ -14,17 +14,16 @@ class HomePage extends StatelessWidget {
       backgroundColor: AppColors.charcoal,
       body: Parent(
         style: AppStyles.homePageContainer,
-        child: Wrap(
+        child: Stack(
           children: [
-            Container(
-              child: Stack(
-                children: [
-                  Txt(AppStrings.appName, style: AppStyles.homePageTitle),
-                  SearchBoxWidget(),
-                  TweetBoxWidget(),
-                ]
-              )
-            )
+            Txt(AppStrings.appName, style: AppStyles.homePageTitle),
+            Stack(
+              children: [
+                SearchBoxWidget(),
+                TweetBoxWidget()
+              ]
+            ),
+            Parent(style: AppStyles.tweetAnalysisButton)
           ]
         )
       )
