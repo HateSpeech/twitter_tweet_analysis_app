@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:twittertweetanalysisapp/presentation/view/home/home_page.dart';
-
-import 'presentation/view/home/tweet_view_widget.dart';
+import 'package:twittertweetanalysisapp/presentation/view/pages/home/home_page.dart';
 
 void main() {
   runApp(MyApp());
