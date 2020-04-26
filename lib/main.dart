@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/view/pages/home/home_page.dart';
 
 void main() {
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'tweet.analysis',
+      title: AppStrings.appName,
 
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,

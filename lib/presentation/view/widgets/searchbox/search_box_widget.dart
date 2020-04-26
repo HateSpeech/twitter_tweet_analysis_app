@@ -3,30 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:twittertweetanalysisapp/data/repository/local/LocalRepositoryImpl.dart';
 import 'package:twittertweetanalysisapp/data/repository/remote/RemoteRepositoryImpl.dart';
-import 'package:twittertweetanalysisapp/domain/interactors/GetClassifications.dart';
 import 'package:twittertweetanalysisapp/domain/interactors/GetTweet.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
+import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_styles.dart';
 import 'package:twittertweetanalysisapp/presentation/model/Tweet.dart';
-import 'package:twittertweetanalysisapp/presentation/view/widgets/tweetbox/tweet_box_presenter.dart';
-import 'package:twittertweetanalysisapp/presentation/view/widgets/tweetbox/tweet_box_view.dart';
+import 'package:twittertweetanalysisapp/presentation/view/widgets/searchbox/search_box_presenter.dart';
+import 'package:twittertweetanalysisapp/presentation/view/widgets/searchbox/search_box_view.dart';
 
-class TweetBoxWidget extends StatefulWidget {
+class SearchBoxWidget extends StatefulWidget {
 
-  TweetBoxWidget({Key key}) : super(key: key);
+  SearchBoxWidget({Key key}) : super(key: key);
 
   @override
-  _TweetBoxWidgetState createState() => _TweetBoxWidgetState();
+  _SearchBoxWidgetState createState() => _SearchBoxWidgetState();
 
 }
 
-class _TweetBoxWidgetState extends State<TweetBoxWidget> implements TweetBoxView {
+class _SearchBoxWidgetState extends State<SearchBoxWidget> implements SearchBoxView {
 
   // Presenter
-  TweetBoxPresenter _presenter;
-
-  // Widget variables
-  Tweet _tweet;
+  SearchBoxPresenter _presenter;
 
   @override
   void initState() {
@@ -36,19 +33,21 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> implements TweetBoxView
     var localRepository = LocalRepositoryImpl();
     var remoteRepository = RemoteRepositoryImpl();
     var getTweet = GetTweet(localRepository, remoteRepository);
-    var getClassifications = GetClassifications(localRepository, remoteRepository);
-    _presenter = TweetBoxPresenter(this, getTweet, getClassifications);
+    _presenter = SearchBoxPresenter(this, getTweet);
   }
   
   @override
   Widget build(BuildContext context) {
     return Parent(
-        style: AppStyles.tweetBox,
+        style: AppStyles.searchBox,
         child: Stack(
             children: [
-              Parent(child: AppImages.quote, style: AppStyles.quoteImage),
-              Txt(_tweet.content, style: AppStyles.tweetText),
-              GestureDetector(onTap: _presenter.loadRandomTweet, child: Parent(child: AppImages.swipeRight, style: AppStyles.tweetSwipeRightImage))
+              Parent(
+                child: TextField(
+                ),
+                style: AppStyles.searchBoxInput,
+              ),
+              GestureDetector(onTap: _presenter.searchForTweet(url: "abc123"), child: Parent(child: AppImages.search, style: AppStyles.searchImage))
             ]
         )
     );
@@ -56,9 +55,6 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> implements TweetBoxView
 
   @override
   void changeCurrentTweet({tweet = Tweet}) {
-    setState(() {
-      _tweet = tweet;
-    });
   }
 
 }

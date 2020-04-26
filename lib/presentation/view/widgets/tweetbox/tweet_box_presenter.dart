@@ -15,13 +15,13 @@ class TweetBoxPresenter {
     loadRandomTweet();
   }
 
-  void loadRandomTweet() {
+  loadRandomTweet() {
     var tweetDomain = _getTweet.execute();
     var tweetPresentation = Tweet(tweetDomain);
     _view.changeCurrentTweet(tweet: tweetPresentation);
   }
 
-  void loadClassifications() {
+  loadClassifications() {
     _getClassifications.execute();
   }
 
