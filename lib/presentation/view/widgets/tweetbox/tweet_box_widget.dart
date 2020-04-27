@@ -8,6 +8,7 @@ import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_uninitialized.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_bloc.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_state.dart';
+import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_styles.dart';
@@ -42,15 +43,19 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
               Parent(child: AppImages.quote, style: AppStyles.quoteImage),
               BlocBuilder<TweetBloc, TweetState>(
                 builder: (context, state) {
-                  if (state is GetTweetUninitialized) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  else if (state is GetTweetSuccess) {
+                  if (state is GetTweetSuccess) {
                     return Txt(state.tweet.content, style: AppStyles.tweetText);
                   }
-                  return Txt(AppStrings.genericError, style: AppStyles.tweetText);
+
+                  if (state is GetTweetError) {
+                    return Txt(AppStrings.genericError, style: AppStyles.tweetText);
+                  }
+
+                  return Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.radicalRed),
+                    ),
+                  );
                 }
               ),
               GestureDetector(

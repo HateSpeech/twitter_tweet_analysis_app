@@ -18,4 +18,9 @@ class Tweet extends PresentationModel<TweetDomainModel> {
     return TweetDomainModel(tweetId, tweetTwitterId, content);
   }
 
+  @override
+  String toString() {
+    return "{ tweetId: $tweetId, tweetTwitterId: $tweetTwitterId, content: \"$content\" }";
+  }
+
 }

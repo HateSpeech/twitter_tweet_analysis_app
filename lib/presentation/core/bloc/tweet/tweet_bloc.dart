@@ -30,42 +30,32 @@ class TweetBloc extends Bloc<TweetEvent, TweetState> {
       yield GetTweetSuccess(tweet: tweetPresentation);
       return;
     }
-    else if (event is GetRandomTweet) {
-      _mapGetRandom(event);
-    }
-    else if (event is GetTweetFromURL) {
-      _mapGetFromURL(event);
-    }
-    else {
-      yield GetTweetError();
+
+    if (event is GetRandomTweet) {
+      try {
+        var tweetDomain = _getTweet.withParms(tweetURL: null).execute();
+        var tweetPresentation = Tweet(tweetDomain);
+        yield GetTweetSuccess(tweet: tweetPresentation);
+      }
+      catch (_) {
+        yield GetTweetError();
+      }
+      return;
     }
 
-  }
-
-  Stream<TweetState> _mapGetRandom(GetRandomTweet getRandomTweet) async* {
-
-    try {
-      var tweetDomain = _getTweet.execute();
-      var tweetPresentation = Tweet(tweetDomain);
-      yield GetTweetSuccess(tweet: tweetPresentation);
+    if (event is GetTweetFromURL) {
+      try {
+        var tweetDomain = _getTweet.withParms(tweetURL: event.tweetURL).execute();
+        var tweetPresentation = Tweet(tweetDomain);
+        yield GetTweetSuccess(tweet: tweetPresentation);
+      }
+      catch (_) {
+        yield GetTweetError();
+      }
+      return;
     }
-    catch (_) {
-      yield GetTweetError();
-    }
 
-  }
-
-  Stream<TweetState> _mapGetFromURL(GetTweetFromURL getTweetFromURL) async* {
-
-    try {
-      var tweetDomain = _getTweet.withParms(tweetURL: getTweetFromURL.tweetURL)
-          .execute();
-      var tweetPresentation = Tweet(tweetDomain);
-      yield GetTweetSuccess(tweet: tweetPresentation);
-    }
-    catch (_) {
-      yield GetTweetError();
-    }
+    yield GetTweetError();
 
   }
 

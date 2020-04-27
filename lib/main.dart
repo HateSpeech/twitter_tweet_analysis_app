@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/bloc_delegate.dart';
+import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/events/get_random_tweet.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_bloc.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/view/pages/home/home_page.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       ),
 
       home: BlocProvider(
-        create: (context) => TweetBloc(getTweet),
+        create: (context) => TweetBloc(getTweet)..add(GetRandomTweet()),
         child: HomePage(),
       ),
     );
