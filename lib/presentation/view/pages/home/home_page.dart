@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_styles.dart';
+import 'package:twittertweetanalysisapp/presentation/view/widgets/analysisbutton/analysis_button_widget.dart';
 import 'package:twittertweetanalysisapp/presentation/view/widgets/searchbox/search_box_widget.dart';
 import 'package:twittertweetanalysisapp/presentation/view/widgets/tweetbox/tweet_box_widget.dart';
 
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget {
                   alignment: AlignmentDirectional.bottomCenter,
                   children: [
                     TweetBoxWidget(),
-                    Parent(style: AppStyles.tweetAnalysisButton)
+                    AnalysisButtonWidget()
                   ]
                 )
               ]
