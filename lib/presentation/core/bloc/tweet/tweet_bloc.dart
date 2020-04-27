@@ -5,6 +5,7 @@ import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/events/get_
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/events/get_tweet_from_url.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_error.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_error_invalid_url.dart';
+import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_loading.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_success.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_uninitialized.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_event.dart';
@@ -26,44 +27,45 @@ class TweetBloc extends Bloc<TweetEvent, TweetState> {
 
     final currentState = state;
 
+    if (currentState is GetTweetLoading)
+      return;
+
     if (currentState is GetTweetUninitialized) {
-      var tweetDomain = _getTweet.execute();
-      var tweetPresentation = Tweet(tweetDomain);
-      yield GetTweetSuccess(tweet: tweetPresentation);
+      yield* _mapGetTweet();
       return;
     }
 
     if (event is GetRandomTweet) {
-      try {
-        var tweetDomain = _getTweet.withParms(tweetURL: null).execute();
-        var tweetPresentation = Tweet(tweetDomain);
-        yield GetTweetSuccess(tweet: tweetPresentation);
-      }
-      on InvalidTweetURLException catch(_) {
-        yield GetTweetErrorInvalidURL();
-      }
-      catch (_) {
-        yield GetTweetError();
-      }
+      yield* _mapGetTweet();
       return;
     }
 
     if (event is GetTweetFromURL) {
-      try {
-        var tweetDomain = _getTweet.withParms(tweetURL: event.tweetURL).execute();
-        var tweetPresentation = Tweet(tweetDomain);
-        yield GetTweetSuccess(tweet: tweetPresentation);
-      }
-      on InvalidTweetURLException catch(_) {
-        yield GetTweetErrorInvalidURL();
-      }
-      catch (_) {
-        yield GetTweetError();
-      }
+      yield* _mapGetTweet(tweetURL: event.tweetURL);
       return;
     }
 
     yield GetTweetError();
+    return;
+
+  }
+
+  Stream<TweetState> _mapGetTweet({String tweetURL}) async* {
+    try {
+      var tweetDomain = _getTweet.withParms(tweetURL: tweetURL).execute();
+
+      yield GetTweetLoading();
+      await Future.delayed(Duration(seconds: 2)); // Simulate server delay
+
+      var tweetPresentation = Tweet(tweetDomain);
+      yield GetTweetSuccess(tweet: tweetPresentation);
+    }
+    on InvalidTweetURLException catch(_) {
+      yield GetTweetErrorInvalidURL();
+    }
+    catch (_) {
+      yield GetTweetError();
+    }
 
   }
 
