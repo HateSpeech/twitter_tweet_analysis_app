@@ -2,9 +2,8 @@ import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:twittertweetanalysisapp/data/repository/local/LocalRepositoryImpl.dart';
-import 'package:twittertweetanalysisapp/data/repository/remote/RemoteRepositoryImpl.dart';
 import 'package:twittertweetanalysisapp/domain/interactors/GetTweet.dart';
+import 'package:twittertweetanalysisapp/domain/interactors/ValidateTwitterURL.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/events/get_tweet_from_url.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_bloc.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
@@ -24,11 +23,18 @@ class SearchBoxWidget extends StatefulWidget {
 class _SearchBoxWidgetState extends State<SearchBoxWidget> {
 
   TweetBloc _bloc;
+  final textEditingController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _bloc = BlocProvider.of<TweetBloc>(context);
+  }
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
   }
   
   @override
@@ -47,15 +53,16 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
                   ),
                   style: AppStyles.searchBoxText,
                   cursorColor: AppColors.radicalRed,
-                  maxLength: GetTweet.urlMaxLenght,
+                  maxLength: ValidateTwitterURL.urlMaxLenght,
+                  controller: textEditingController,
                 ),
                 style: AppStyles.searchBoxInput,
               ),
               GestureDetector(
-                  onTap: () => _bloc.add(GetTweetFromURL(tweetURL: "abc123")),
+                  onTap: () => _bloc.add(GetTweetFromURL(tweetURL: textEditingController.text)),
                   child: Parent(
                       child: AppImages.search,
-                      style: AppStyles.searchImage
+                      style: AppStyles.searchImage,
                   )
               )
             ]

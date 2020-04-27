@@ -4,15 +4,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/events/get_random_tweet.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_error.dart';
+import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_error_invalid_url.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_success.dart';
-import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_uninitialized.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_bloc.dart';
 import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_state.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_styles.dart';
-import 'package:twittertweetanalysisapp/presentation/model/Tweet.dart';
 
 class TweetBoxWidget extends StatefulWidget {
   
@@ -48,7 +47,11 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
                   }
 
                   if (state is GetTweetError) {
-                    return Txt(AppStrings.genericError, style: AppStyles.tweetText);
+                    return Txt(AppStrings.genericError, style: AppStyles.errorMsg);
+                  }
+
+                  if (state is GetTweetErrorInvalidURL) {
+                    return Txt(AppStrings.invalidTweetURL, style: AppStyles.errorMsg);
                   }
 
                   return Center(

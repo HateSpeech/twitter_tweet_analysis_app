@@ -17,7 +17,7 @@ class RemoteRepositoryImpl extends RemoteRepository {
     }
 
     // TODO: Connect to API
-    var tweet = TweetEntity(tweetURL, "1050118621198921728", "This is a SPECIFIC tweet body from remote repository");
+    var tweet = TweetEntity(tweetURL, "1050118621198921728", "This is a SPECIFIC tweet body from remote repository... URL: $tweetURL");
     return tweet.asDomainModel();
   }
 

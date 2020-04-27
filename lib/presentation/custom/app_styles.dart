@@ -74,6 +74,16 @@ class AppStyles {
     ..margin(all: 32)
     ..textColor(AppColors.charcoal);
 
+  // ErrorMsg
+  static get errorMsg => TxtStyle()
+    ..maxWidth(450)
+    ..fontSize(18)
+    ..fontFamily(GoogleFonts.roboto().fontFamily)
+    ..alignment.center()
+    ..textAlign.justify()
+    ..margin(all: 32)
+    ..textColor(AppColors.radicalRed);
+
   // TweetSwipeRightImage
   static get swipeRightImage => ParentStyle()
     ..margin(bottom: 23, right: 15)
