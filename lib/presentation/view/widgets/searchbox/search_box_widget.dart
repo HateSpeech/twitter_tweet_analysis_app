@@ -1,16 +1,16 @@
 import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:twittertweetanalysisapp/data/repository/local/LocalRepositoryImpl.dart';
 import 'package:twittertweetanalysisapp/data/repository/remote/RemoteRepositoryImpl.dart';
 import 'package:twittertweetanalysisapp/domain/interactors/GetTweet.dart';
+import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/events/get_tweet_from_url.dart';
+import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_bloc.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_styles.dart';
-import 'package:twittertweetanalysisapp/presentation/model/Tweet.dart';
-import 'package:twittertweetanalysisapp/presentation/view/widgets/searchbox/search_box_presenter.dart';
-import 'package:twittertweetanalysisapp/presentation/view/widgets/searchbox/search_box_view.dart';
 
 class SearchBoxWidget extends StatefulWidget {
 
@@ -21,20 +21,14 @@ class SearchBoxWidget extends StatefulWidget {
 
 }
 
-class _SearchBoxWidgetState extends State<SearchBoxWidget> implements SearchBoxView {
+class _SearchBoxWidgetState extends State<SearchBoxWidget> {
 
-  // Presenter
-  SearchBoxPresenter _presenter;
+  TweetBloc _bloc;
 
   @override
   void initState() {
     super.initState();
-
-    // TODO: Add dependency injection
-    var localRepository = LocalRepositoryImpl();
-    var remoteRepository = RemoteRepositoryImpl();
-    var getTweet = GetTweet(localRepository, remoteRepository);
-    _presenter = SearchBoxPresenter(this, getTweet);
+    _bloc = BlocProvider.of<TweetBloc>(context);
   }
   
   @override
@@ -58,7 +52,7 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> implements SearchBoxV
                 style: AppStyles.searchBoxInput,
               ),
               GestureDetector(
-                  onTap: _presenter.searchForTweet(url: "abc123"),
+                  onTap: () => _bloc.add(GetTweetFromURL(tweetURL: "abc123")),
                   child: Parent(
                       child: AppImages.search,
                       style: AppStyles.searchImage
@@ -67,10 +61,6 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> implements SearchBoxV
             ]
         )
     );
-  }
-
-  @override
-  void changeCurrentTweet({tweet = Tweet}) {
   }
 
 }
