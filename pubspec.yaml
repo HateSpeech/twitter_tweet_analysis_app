@@ -31,9 +31,9 @@ dependencies:
   division: "0.8.8"
   google_fonts: "0.6.2"
   flutter_svg: "0.17.4"
-  bloc: "^4.0.0"
-  flutter_bloc: "^4.0.0"
-  equatable: "^1.1.1"
+  mobx: "^0.4.0+1"
+  flutter_mobx: "^0.3.6"
+  provider: "^4.0.5+1"
 
   flutter:
     sdk: flutter
@@ -46,6 +46,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mobx_codegen: "^0.4.1"
+  build_runner: "^1.7.3"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

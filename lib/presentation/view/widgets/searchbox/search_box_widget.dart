@@ -1,11 +1,9 @@
 import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:twittertweetanalysisapp/domain/interactors/GetTweet.dart';
+import 'package:provider/provider.dart';
 import 'package:twittertweetanalysisapp/domain/interactors/ValidateTwitterURL.dart';
-import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/events/get_tweet_from_url.dart';
-import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_bloc.dart';
+import 'package:twittertweetanalysisapp/presentation/core/mobx/tweet/tweet_controller.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
@@ -22,14 +20,7 @@ class SearchBoxWidget extends StatefulWidget {
 
 class _SearchBoxWidgetState extends State<SearchBoxWidget> {
 
-  TweetBloc _bloc;
   final textEditingController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _bloc = BlocProvider.of<TweetBloc>(context);
-  }
 
   @override
   void dispose() {
@@ -39,6 +30,8 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
   
   @override
   Widget build(BuildContext context) {
+    var controller = Provider.of<TweetController>(context);
+
     return Parent(
         style: AppStyles.searchBox,
         child: Stack(
@@ -59,7 +52,7 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
                 style: AppStyles.searchBoxInput,
               ),
               GestureDetector(
-                  onTap: () => _bloc.add(GetTweetFromURL(tweetURL: textEditingController.text)),
+                  onTap: () => controller.getTweet(tweetURL: textEditingController.text),
                   child: Parent(
                       child: AppImages.search,
                       style: AppStyles.searchImage,

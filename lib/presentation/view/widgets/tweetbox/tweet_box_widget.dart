@@ -1,13 +1,9 @@
 import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/events/get_random_tweet.dart';
-import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_error.dart';
-import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_error_invalid_url.dart';
-import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/states/get_tweet_success.dart';
-import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_bloc.dart';
-import 'package:twittertweetanalysisapp/presentation/core/bloc/tweet/tweet_state.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
+import 'package:twittertweetanalysisapp/presentation/core/mobx/tweet/tweet_controller.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
@@ -24,45 +20,42 @@ class TweetBoxWidget extends StatefulWidget {
 
 class _TweetBoxWidgetState extends State<TweetBoxWidget> {
 
-  TweetBloc _bloc;
-
   @override
   void initState() {
     super.initState();
-    _bloc = BlocProvider.of<TweetBloc>(context);
   }
   
   @override
   Widget build(BuildContext context) {
+    var controller = Provider.of<TweetController>(context);
 
     return Parent(
         style: AppStyles.tweetBox,
         child: Stack(
             children: [
               Parent(child: AppImages.quote, style: AppStyles.quoteImage),
-              BlocBuilder<TweetBloc, TweetState>(
-                builder: (context, state) {
-                  if (state is GetTweetSuccess) {
-                    return Txt(state.tweet.content, style: AppStyles.tweetText);
-                  }
+              Observer(builder: (_) {
+//                  if (state is GetTweetSuccess) {
+                    return Txt(controller.tweet.content, style: AppStyles.tweetText);
+//                  }
 
-                  if (state is GetTweetError) {
-                    return Txt(AppStrings.genericError, style: AppStyles.errorMsg);
-                  }
-
-                  if (state is GetTweetErrorInvalidURL) {
-                    return Txt(AppStrings.invalidTweetURL, style: AppStyles.errorMsg);
-                  }
-
-                  return Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.radicalRed),
-                    ),
-                  );
+//                  if (state is GetTweetError) {
+//                    return Txt(AppStrings.genericError, style: AppStyles.errorMsg);
+//                  }
+//
+//                  if (state is GetTweetErrorInvalidURL) {
+//                    return Txt(AppStrings.invalidTweetURL, style: AppStyles.errorMsg);
+//                  }
+//
+//                  return Center(
+//                    child: CircularProgressIndicator(
+//                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.radicalRed),
+//                    ),
+//                  );
                 }
               ),
               GestureDetector(
-                  onTap: () => _bloc.add(GetRandomTweet()),
+                  onTap: () => controller.getTweet(),
                   child: Parent(
                       child: AppImages.swipeRight,
                       style: AppStyles.swipeRightImage
