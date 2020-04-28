@@ -13,7 +13,7 @@ class AppStrings {
   static get searchTitle => "Digite a URL de um tweet...";
 
   // TweetBox
-  static get nextTweetTooltip => "Próximo tweet aleatório";
+  static get nextTweetTooltip => "Próximo";
   static get analysisTooltip => "Avaliar";
 
   // Errors

@@ -46,7 +46,10 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
               GestureDetector(
                   onTap: () => controller.getTweet(),
                   child: Parent(
-                      child: AppImages.swipeRight,
+                      child: Tooltip(
+                        message: AppStrings.nextTweetTooltip,
+                        child: AppImages.swipeRight
+                      ),
                       style: AppStyles.swipeRightImage
                   )
               )

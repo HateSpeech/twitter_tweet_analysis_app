@@ -26,7 +26,10 @@ class HomePage extends StatelessWidget {
                   alignment: AlignmentDirectional.bottomCenter,
                   children: [
                     TweetBoxWidget(),
-                    AnalysisButtonWidget()
+                    Tooltip(
+                        message: AppStrings.analysisTooltip,
+                        child: AnalysisButtonWidget()
+                    )
                   ]
                 )
               ]
