@@ -1,12 +1,13 @@
-import 'package:twittertweetanalysisapp/domain/core/DomainModel.dart';
-import 'package:twittertweetanalysisapp/domain/repository/local/LocalRepository.dart';
-import 'package:twittertweetanalysisapp/domain/repository/remote/RemoteRepository.dart';
+import 'package:twittertweetanalysisapp/domain/core/domain_model.dart';
+import 'package:twittertweetanalysisapp/domain/repository/local/local_repository.dart';
+import 'package:twittertweetanalysisapp/domain/repository/remote/remote_repository.dart';
 
-abstract class AsyncInteractor<ReturnType, RepositoryModel extends DomainModel> {
+abstract class AsyncInteractor<ReturnType> {
 
   LocalRepository localRepository;
   RemoteRepository remoteRepository;
 
   Future<ReturnType> execute();
+  cacheResponse(Future<ReturnType> response);
 
 }
