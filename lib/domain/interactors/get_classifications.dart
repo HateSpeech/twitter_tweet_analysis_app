@@ -1,9 +1,9 @@
 import 'package:twittertweetanalysisapp/domain/core/async_interactor.dart';
-import 'package:twittertweetanalysisapp/domain/model/classification_model.dart';
+import 'package:twittertweetanalysisapp/domain/model/classification_domain.dart';
 import 'package:twittertweetanalysisapp/domain/repository/local/local_repository.dart';
 import 'package:twittertweetanalysisapp/domain/repository/remote/remote_repository.dart';
 
-class GetClassifications implements AsyncInteractor<List<ClassificationModel>> {
+class GetClassifications implements AsyncInteractor<List<ClassificationDomain>> {
 
   @override
   LocalRepository localRepository;
@@ -14,8 +14,8 @@ class GetClassifications implements AsyncInteractor<List<ClassificationModel>> {
   GetClassifications(this.localRepository, this.remoteRepository);
 
   @override
-  Future<List<ClassificationModel>> execute() {
-    var cachedObjectList = localRepository.getList(ClassificationModel.cacheKey);
+  Future<List<ClassificationDomain>> execute() {
+    var cachedObjectList = localRepository.getList(ClassificationDomain.cacheKey);
     if (cachedObjectList != null) {
       return cachedObjectList;
     }
@@ -25,7 +25,7 @@ class GetClassifications implements AsyncInteractor<List<ClassificationModel>> {
   }
 
   @override
-  cacheResponse(Future<List<ClassificationModel>> response) {
+  cacheResponse(Future<List<ClassificationDomain>> response) {
     // TODO: implement cacheResponse
     throw UnimplementedError();
   }

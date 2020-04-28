@@ -4,12 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:twittertweetanalysisapp/domain/core/exceptions/invalid_tweet_url_exception.dart';
-import 'package:twittertweetanalysisapp/domain/model/tweet_model.dart';
 import 'package:twittertweetanalysisapp/presentation/core/mobx/tweet/tweet_controller.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_styles.dart';
+import 'package:twittertweetanalysisapp/presentation/model/Tweet.dart';
 
 class TweetBoxWidget extends StatefulWidget {
   
@@ -55,8 +55,8 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
     );
   }
 
-  Widget _handleTweetSuccess(TweetModel tweetModel) {
-    return Txt(tweetModel.content, style: AppStyles.tweetText);
+  Widget _handleTweetSuccess(Tweet tweet) {
+    return Txt(tweet.content, style: AppStyles.tweetText);
   }
 
   Widget _handleTweetLoading() {

@@ -1,6 +1,6 @@
 import 'package:twittertweetanalysisapp/data/core/entity.dart';
 import 'package:twittertweetanalysisapp/domain/core/domain_model.dart';
-import 'package:twittertweetanalysisapp/domain/model/classification_model.dart';
+import 'package:twittertweetanalysisapp/domain/model/classification_domain.dart';
 
 class ClassificationEntity extends Entity {
 
@@ -14,7 +14,7 @@ class ClassificationEntity extends Entity {
 
   @override
   DomainModel asDomainModel() {
-    return ClassificationModel(classificationId, description);
+    return ClassificationDomain(classificationId, description);
   }
 
 }

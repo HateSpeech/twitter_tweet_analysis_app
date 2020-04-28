@@ -12,14 +12,14 @@ mixin _$TweetController on TweetBaseController, Store {
   final _$tweetAtom = Atom(name: 'TweetBaseController.tweet');
 
   @override
-  ObservableFuture<TweetModel> get tweet {
+  ObservableFuture<Tweet> get tweet {
     _$tweetAtom.context.enforceReadPolicy(_$tweetAtom);
     _$tweetAtom.reportObserved();
     return super.tweet;
   }
 
   @override
-  set tweet(ObservableFuture<TweetModel> value) {
+  set tweet(ObservableFuture<Tweet> value) {
     _$tweetAtom.context.conditionallyRunInAction(() {
       super.tweet = value;
       _$tweetAtom.reportChanged();

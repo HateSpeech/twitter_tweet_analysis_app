@@ -1,4 +1,3 @@
-import 'package:twittertweetanalysisapp/domain/core/domain_model.dart';
 import 'package:twittertweetanalysisapp/domain/repository/local/local_repository.dart';
 import 'package:twittertweetanalysisapp/domain/repository/remote/remote_repository.dart';
 

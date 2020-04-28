@@ -1,10 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:twittertweetanalysisapp/data/core/entity.dart';
-import 'package:twittertweetanalysisapp/domain/model/tweet_model.dart';
+import 'package:twittertweetanalysisapp/domain/model/tweet_domain.dart';
+
 part 'tweet_entity.g.dart';
 
 @JsonSerializable(nullable: false)
-class TweetEntity extends Entity<TweetModel> {
+class TweetEntity extends Entity<TweetDomain> {
 
   final String tweetId;
   final String tweetTwitterId;
@@ -16,8 +17,8 @@ class TweetEntity extends Entity<TweetModel> {
   Map<String, dynamic> toJson() => _$TweetEntityToJson(this);
 
   @override
-  TweetModel asDomainModel() {
-    return TweetModel(tweetId, tweetTwitterId, content);
+  TweetDomain asDomainModel() {
+    return TweetDomain(tweetId, tweetTwitterId, content);
   }
 
 }
