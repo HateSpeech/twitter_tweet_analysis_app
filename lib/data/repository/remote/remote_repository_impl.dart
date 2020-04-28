@@ -12,26 +12,21 @@ class RemoteRepositoryImpl extends RemoteRepository {
   @override
   Future<TweetDomain> getTweet({String tweetURL}) async {
     if (tweetURL == null) {
-      return _remoteServices.getRandomTweet().then((value) =>
-          value.asDomainModel());
+      return _remoteServices
+          .getRandomTweet()
+          .then((entity) => entity.asDomainModel());
     }
 
-    return _remoteServices.getSpecificTweet(tweetURL: tweetURL).then((value) => value.asDomainModel());
+    return _remoteServices
+        .getSpecificTweet(tweetURL: tweetURL)
+        .then((entity) => entity.asDomainModel());
   }
 
   @override
   Future<List<ClassificationDomain>> getClassifications() async {
-    // TODO: Connect to API
-    var classificationList = List();
-    classificationList.add(ClassificationEntity(0, "Classification A description;"));
-    classificationList.add(ClassificationEntity(1, "Classification B description;"));
-    classificationList.add(ClassificationEntity(2, "Classification C description;"));
-    classificationList.add(ClassificationEntity(3, "Classification D description;"));
-    classificationList.add(ClassificationEntity(4, "Classification E description;"));
-    classificationList.add(ClassificationEntity(5, "Classification F description;"));
-    classificationList.add(ClassificationEntity(6, "Classification G description;"));
-    var domainClassificationList = classificationList.map<ClassificationDomain>((e) => e.asDomainModel()).toList();
-    return Future.value(domainClassificationList);
+    return _remoteServices
+        .getClassifications()
+        .then((entityList) => entityList.map((entity) => entity.asDomainModel()).toList());
   }
 
 

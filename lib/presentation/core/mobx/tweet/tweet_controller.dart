@@ -20,7 +20,11 @@ abstract class TweetBaseController with Store {
 
   @action
   getTweet({String tweetURL}) {
-    tweet = _getTweet.withParms(tweetURL: tweetURL).execute().then((value) => Tweet(value)).asObservable();
+    tweet = _getTweet
+        .withParms(tweetURL: tweetURL)
+        .execute()
+        .then((domainModel) => Tweet(domainModel))
+        .asObservable();
   }
 
 }

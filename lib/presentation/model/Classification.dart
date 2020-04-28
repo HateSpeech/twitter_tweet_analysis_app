@@ -3,17 +3,17 @@ import 'package:twittertweetanalysisapp/presentation/core/presentation_model.dar
 
 class Classification extends PresentationModel<ClassificationDomain> {
 
-  int classificationId;
+  int id;
   String description;
 
   Classification(ClassificationDomain domainModel) {
-    this.classificationId = domainModel.classificationId;
+    this.id = domainModel.id;
     this.description = domainModel.description;
   }
 
   @override
   ClassificationDomain asDomainModel() {
-    return ClassificationDomain(classificationId, description);
+    return ClassificationDomain(id, description);
   }
 
 }

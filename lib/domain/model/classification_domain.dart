@@ -4,11 +4,11 @@ class ClassificationDomain extends DomainModel {
 
   static String cacheKey = "CLASSIFICATION_DOMAIN_MODEL";
 
-  int classificationId;
+  int id;
   String description;
 
-  ClassificationDomain(int classificationId, String description) {
-    this.classificationId = classificationId;
+  ClassificationDomain(int id, String description) {
+    this.id = id;
     this.description = description;
   }
 

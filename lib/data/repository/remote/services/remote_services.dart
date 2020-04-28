@@ -22,9 +22,10 @@ class RemoteServices {
 
   /// Gets all classifications
   Future<List<ClassificationEntity>> getClassifications({String tweetURL}) async {
-    Response response = await _requestManager.dio.get("");
-    return Future.error(Object());
-//    return .fromJson(response.data);
+    Response response = await _requestManager.dio.get("/classifications");
+    var responseList = response.data as List;
+    var mappedResponse = responseList.map((e) => ClassificationEntity.fromJson(e)).toList();
+    return mappedResponse;
   }
 
 }

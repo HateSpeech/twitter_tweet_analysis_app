@@ -1,20 +1,23 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:twittertweetanalysisapp/data/core/entity.dart';
-import 'package:twittertweetanalysisapp/domain/core/domain_model.dart';
 import 'package:twittertweetanalysisapp/domain/model/classification_domain.dart';
 
-class ClassificationEntity extends Entity {
+part 'classification_entity.g.dart';
 
-  int classificationId;
+@JsonSerializable(nullable: false)
+class ClassificationEntity extends Entity<ClassificationDomain> {
+
+  int id;
   String description;
 
-  ClassificationEntity(int classificationId, String description) {
-    this.classificationId = classificationId;
-    this.description = description;
-  }
+  ClassificationEntity({this.id, this.description});
+
+  factory ClassificationEntity.fromJson(Map<String, dynamic> json) => _$ClassificationEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$ClassificationEntityToJson(this);
 
   @override
-  DomainModel asDomainModel() {
-    return ClassificationDomain(classificationId, description);
+  ClassificationDomain asDomainModel() {
+    return ClassificationDomain(id, description);
   }
 
 }
