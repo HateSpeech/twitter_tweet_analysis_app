@@ -35,23 +35,23 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
             children: [
               Parent(child: AppImages.quote, style: AppStyles.quoteImage),
               Observer(builder: (_) {
-//                  if (state is GetTweetSuccess) {
-                    return Txt(controller.tweet.content, style: AppStyles.tweetText);
-//                  }
+                if (controller.tweet.error != null) {
+                  return Txt(AppStrings.genericError, style: AppStyles.errorMsg);
+                }
 
-//                  if (state is GetTweetError) {
-//                    return Txt(AppStrings.genericError, style: AppStyles.errorMsg);
-//                  }
-//
+                if (controller.tweet.value == null) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.radicalRed),
+                    ),
+                  );
+                }
+
+                return Txt(controller.tweet.value.content, style: AppStyles.tweetText);
+
 //                  if (state is GetTweetErrorInvalidURL) {
 //                    return Txt(AppStrings.invalidTweetURL, style: AppStyles.errorMsg);
 //                  }
-//
-//                  return Center(
-//                    child: CircularProgressIndicator(
-//                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.radicalRed),
-//                    ),
-//                  );
                 }
               ),
               GestureDetector(

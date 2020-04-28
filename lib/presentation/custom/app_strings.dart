@@ -9,7 +9,7 @@ class AppStrings {
 
   // Defaults
   static get appName => "tweet.analysis";
-  static get searchTitle => "Procure um tweet específico digitando sua URL...";
+  static get searchTitle => "Digite a URL de um tweet...";
 
   // Errors
   static get genericError => "Oops.. Aconteceu algum erro! 🤔";

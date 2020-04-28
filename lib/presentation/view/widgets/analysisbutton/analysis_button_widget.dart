@@ -10,7 +10,10 @@ class AnalysisButtonWidget extends StatelessWidget {
       onTap: () => {},
       child: Parent(
         style: AppStyles.tweetAnalysisButton,
-        child: AppImages.test,
+        child: Parent(
+          child: AppImages.test,
+          style: AppStyles.listImage,
+        )
       )
     );
   }

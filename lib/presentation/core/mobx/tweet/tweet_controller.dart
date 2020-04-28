@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:twittertweetanalysisapp/domain/interactors/GetTweet.dart';
-import 'package:twittertweetanalysisapp/presentation/model/Tweet.dart';
+import 'package:twittertweetanalysisapp/domain/interactors/get_tweet.dart';
+import 'package:twittertweetanalysisapp/domain/model/tweet_model.dart';
 part 'tweet_controller.g.dart';
 
 class TweetController = TweetBaseController with _$TweetController;
@@ -15,17 +15,11 @@ abstract class TweetBaseController with Store {
   }
 
   @observable
-  Tweet tweet;
+  ObservableFuture<TweetModel> tweet;
 
   @action
   getTweet({String tweetURL}) {
-    try {
-      var tweetDomain = _getTweet.withParms(tweetURL: tweetURL).execute();
-      tweet = Tweet(tweetDomain);
-    }
-    catch (_) {
-
-    }
+    tweet = _getTweet.withParms(tweetURL: tweetURL).execute().asObservable();
   }
 
 }

@@ -1,7 +1,7 @@
-import 'package:twittertweetanalysisapp/data/core/Entity.dart';
-import 'package:twittertweetanalysisapp/domain/model/TweetDomainModel.dart';
+import 'package:twittertweetanalysisapp/data/core/entity.dart';
+import 'package:twittertweetanalysisapp/domain/model/tweet_model.dart';
 
-class TweetEntity extends Entity<TweetDomainModel> {
+class TweetEntity extends Entity<TweetModel> {
 
   String tweetId;
   String tweetTwitterId;
@@ -13,15 +13,15 @@ class TweetEntity extends Entity<TweetDomainModel> {
     this.content = content;
   }
 
-  TweetEntity.fromDomainObject(TweetDomainModel domainModel) {
+  TweetEntity.fromDomainObject(TweetModel domainModel) {
     this.tweetId = domainModel.tweetId;
     this.tweetTwitterId = domainModel.tweetTwitterId;
     this.content = domainModel.content;
   }
 
   @override
-  TweetDomainModel asDomainModel() {
-    return TweetDomainModel(tweetId, tweetTwitterId, content);
+  TweetModel asDomainModel() {
+    return TweetModel(tweetId, tweetTwitterId, content);
   }
 
 }

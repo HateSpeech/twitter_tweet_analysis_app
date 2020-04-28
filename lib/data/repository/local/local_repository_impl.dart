@@ -1,15 +1,15 @@
-import 'package:twittertweetanalysisapp/domain/core/DomainModel.dart';
-import 'package:twittertweetanalysisapp/domain/repository/local/LocalRepository.dart';
+import 'package:twittertweetanalysisapp/domain/core/domain_model.dart';
+import 'package:twittertweetanalysisapp/domain/repository/local/local_repository.dart';
 
 class LocalRepositoryImpl extends LocalRepository {
 
   @override
-  DomainModel getObject(String cacheKey, {id = String}) {
+  Future<DomainModel> getObject(String cacheKey, {id = String}) {
     return null;
   }
 
   @override
-  List<DomainModel> getList(String cacheKey, {id = String}) {
+  Future<List<DomainModel>> getList(String cacheKey, {id = String}) {
     return null;
   }
 

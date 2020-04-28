@@ -2,7 +2,7 @@ import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:twittertweetanalysisapp/domain/interactors/ValidateTwitterURL.dart';
+import 'package:twittertweetanalysisapp/domain/interactors/validate_twitter_url.dart';
 import 'package:twittertweetanalysisapp/presentation/core/mobx/tweet/tweet_controller.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';

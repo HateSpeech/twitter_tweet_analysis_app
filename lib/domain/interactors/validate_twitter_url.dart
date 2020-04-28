@@ -1,8 +1,8 @@
-import 'package:twittertweetanalysisapp/domain/core/BasicInteractor.dart';
-import 'package:twittertweetanalysisapp/domain/core/exceptions/InvalidTweetIdException.dart';
+import 'package:twittertweetanalysisapp/domain/core/exceptions/invalid_tweet_url_exception.dart';
+import 'package:twittertweetanalysisapp/domain/core/sync_interactor.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 
-class ValidateTwitterURL implements BasicInteractor<bool> {
+class ValidateTwitterURL implements SyncInteractor<bool> {
 
   String _twitterURL;
   RegExp _regex = RegExp("http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)", caseSensitive: false, multiLine: false);

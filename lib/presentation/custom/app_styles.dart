@@ -9,8 +9,14 @@ class AppStyles {
   // Prevent class to be instatiated
   AppStyles._();
 
+  /// ---
+  /// Commons
+  /// ---
   static get _defaultRadius => 15.0;
 
+  /// ---
+  /// Widgets
+  /// ---
   // HomePageTitle
   static get homePageTitle => TxtStyle()
     ..fontSize(11)
@@ -21,7 +27,8 @@ class AppStyles {
 
   // HomePageContainer
   static get homePageContainer => ParentStyle()
-    ..maxWidth(600)
+    ..maxWidth(500)
+    ..margin(left: 16, right: 16)
     ..alignment.center();
 
   // SearchBoxWidget
@@ -48,26 +55,16 @@ class AppStyles {
       fontSize: 14
   );
 
-  // SearchImage
-  static get searchImage => ParentStyle()
-    ..margin(top: 20, right: 20)
-    ..alignment.topRight();
-
   // TweetBoxWidget
   static get tweetBox => ParentStyle()
-    ..height(300)
+    ..height(200)
     ..borderRadius(all: _defaultRadius)
     ..background.color(AppColors.cultured)
-    ..margin(top: 57, bottom: 45);
-
-  // QuoteImage
-  static get quoteImage => ParentStyle()
-    ..margin(top: 23, left: 23);
+    ..margin(top: 57, bottom: 40);
 
   // TweetTextWidget
   static get tweetText => TxtStyle()
-    ..maxWidth(450)
-    ..fontSize(18)
+    ..fontSize(16)
     ..fontFamily(GoogleFonts.roboto().fontFamily)
     ..alignment.center()
     ..textAlign.justify()
@@ -76,24 +73,46 @@ class AppStyles {
 
   // ErrorMsg
   static get errorMsg => TxtStyle()
-    ..maxWidth(450)
-    ..fontSize(18)
+    ..fontSize(16)
     ..fontFamily(GoogleFonts.roboto().fontFamily)
     ..alignment.center()
     ..textAlign.justify()
     ..margin(all: 32)
     ..textColor(AppColors.radicalRed);
 
-  // TweetSwipeRightImage
-  static get swipeRightImage => ParentStyle()
-    ..margin(bottom: 23, right: 15)
-    ..alignment.bottomRight();
-
   // TweetAnalysisButton
   static get tweetAnalysisButton => ParentStyle()
-    ..width(90)
-    ..height(90)
-    ..borderRadius(all: 45)
+    ..width(80)
+    ..height(80)
+    ..borderRadius(all: 40)
     ..background.color(AppColors.radicalRed);
+
+  /// ---
+  /// Images
+  /// ---
+  // SearchImage
+  static get searchImage => ParentStyle()
+    ..margin(top: 20, right: 20)
+    ..alignment.topRight();
+
+  // QuoteImage
+  static get quoteImage => ParentStyle()
+    ..width(30)
+    ..height(30)
+    ..margin(top: 15, left: 15)
+    ..opacity(0.07);
+
+  // SwipeRightImage
+  static get swipeRightImage => ParentStyle()
+    ..width(37)
+    ..height(37)
+    ..margin(bottom: 15, right: 15)
+    ..alignment.bottomRight();
+
+  // ListImage
+  static get listImage => ParentStyle()
+    ..width(30)
+    ..height(30)
+    ..alignment.center();
 
 }

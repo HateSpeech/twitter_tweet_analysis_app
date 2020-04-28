@@ -1,10 +1,10 @@
 import 'package:get_it/get_it.dart';
-import 'package:twittertweetanalysisapp/data/repository/local/LocalRepositoryImpl.dart';
-import 'package:twittertweetanalysisapp/data/repository/remote/RemoteRepositoryImpl.dart';
-import 'package:twittertweetanalysisapp/domain/interactors/GetTweet.dart';
-import 'package:twittertweetanalysisapp/domain/interactors/ValidateTwitterURL.dart';
-import 'package:twittertweetanalysisapp/domain/repository/local/LocalRepository.dart';
-import 'package:twittertweetanalysisapp/domain/repository/remote/RemoteRepository.dart';
+import 'package:twittertweetanalysisapp/data/repository/local/local_repository_impl.dart';
+import 'package:twittertweetanalysisapp/data/repository/remote/remote_repository_impl.dart';
+import 'package:twittertweetanalysisapp/domain/interactors/get_tweet.dart';
+import 'package:twittertweetanalysisapp/domain/interactors/validate_twitter_url.dart';
+import 'package:twittertweetanalysisapp/domain/repository/local/local_repository.dart';
+import 'package:twittertweetanalysisapp/domain/repository/remote/remote_repository.dart';
 
 final getIt = GetIt.instance;
 

@@ -1,6 +1,6 @@
-import 'package:twittertweetanalysisapp/domain/core/DomainModel.dart';
+import 'package:twittertweetanalysisapp/domain/core/domain_model.dart';
 
-class TweetDomainModel extends DomainModel {
+class TweetModel extends DomainModel {
 
   static String cacheKey = "TWEET_DOMAIN_MODEL";
 
@@ -8,7 +8,7 @@ class TweetDomainModel extends DomainModel {
   String tweetTwitterId;
   String content;
 
-  TweetDomainModel(String tweetId, String tweetTwitterId, String content) {
+  TweetModel(String tweetId, String tweetTwitterId, String content) {
     this.tweetId = tweetId;
     this.tweetTwitterId = tweetTwitterId;
     this.content = content;
