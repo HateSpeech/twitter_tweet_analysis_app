@@ -7,14 +7,14 @@ import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/view/pages/home/home_page.dart';
 
 void main() {
-  setupDependencyInjection();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    setupDependencyInjection();
+
     var providers = [
       Provider<TweetController>(create: (_) => TweetController(getIt())),
       Provider<ClassificationController>(create: (_) => ClassificationController(getIt()))

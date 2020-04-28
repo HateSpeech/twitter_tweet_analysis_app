@@ -5,16 +5,14 @@ import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 class ValidateTwitterURL implements SyncInteractor<bool> {
 
   String _twitterURL;
-  RegExp _regex = RegExp("http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)", caseSensitive: false, multiLine: false);
-
-  static var urlMaxLenght = 80;
+  RegExp _regex = RegExp("http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)\/status\/\d+", caseSensitive: false, multiLine: false);
 
   ValidateTwitterURL();
 
   @override
   bool execute() {
     // Validate min URL length
-    if ((_twitterURL!= null && _twitterURL.isEmpty) || (_twitterURL != null && _twitterURL.length >= urlMaxLenght)) {
+    if (_twitterURL != null && _twitterURL.isEmpty) {
       throw InvalidTweetURLException(_twitterURL, AppStrings.invalidTweetURL);
     }
 

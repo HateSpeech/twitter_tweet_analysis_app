@@ -37,17 +37,19 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
         child: Stack(
             children: [
               Parent(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: AppStrings.searchTitle,
-                    hintStyle: AppStyles.searchBoxHint,
-                    fillColor: AppColors.cultured,
+                child: Tooltip(
+                  message: AppStrings.searchTooltip,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: AppStrings.searchTitle,
+                      hintStyle: AppStyles.searchBoxHint,
+                      fillColor: AppColors.cultured,
+                    ),
+                    style: AppStyles.searchBoxText,
+                    cursorColor: AppColors.radicalRed,
+                    controller: textEditingController,
                   ),
-                  style: AppStyles.searchBoxText,
-                  cursorColor: AppColors.radicalRed,
-                  maxLength: ValidateTwitterURL.urlMaxLenght,
-                  controller: textEditingController,
                 ),
                 style: AppStyles.searchBoxInput,
               ),
