@@ -1,4 +1,5 @@
 import 'package:twittertweetanalysisapp/domain/core/async_interactor.dart';
+import 'package:twittertweetanalysisapp/domain/core/exceptions/invalid_tweet_url_exception.dart';
 import 'package:twittertweetanalysisapp/domain/interactors/validate_twitter_url.dart';
 import 'package:twittertweetanalysisapp/domain/model/tweet_model.dart';
 import 'package:twittertweetanalysisapp/domain/repository/local/local_repository.dart';
@@ -22,7 +23,12 @@ class GetTweet implements AsyncInteractor<TweetModel> {
   @override
   Future<TweetModel> execute() {
     if (_tweetURL != null) {
-      _validateTwitterURL.withParms(tweetURL: _tweetURL).execute();
+      try {
+        _validateTwitterURL.withParms(tweetURL: _tweetURL).execute();
+      }
+      on InvalidTweetURLException catch (error) {
+        return Future.error(error);
+      }
     }
 
     var cachedObject = localRepository.getObject(TweetModel.cacheKey, id: _tweetURL);

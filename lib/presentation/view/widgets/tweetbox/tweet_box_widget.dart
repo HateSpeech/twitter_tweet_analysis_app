@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+import 'package:twittertweetanalysisapp/domain/core/exceptions/invalid_tweet_url_exception.dart';
+import 'package:twittertweetanalysisapp/domain/model/tweet_model.dart';
 import 'package:twittertweetanalysisapp/presentation/core/mobx/tweet/tweet_controller.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
@@ -19,15 +21,10 @@ class TweetBoxWidget extends StatefulWidget {
 }
 
 class _TweetBoxWidgetState extends State<TweetBoxWidget> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
   
   @override
   Widget build(BuildContext context) {
-    var controller = Provider.of<TweetController>(context);
+    TweetController controller = Provider.of(context);
 
     return Parent(
         style: AppStyles.tweetBox,
@@ -35,23 +32,15 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
             children: [
               Parent(child: AppImages.quote, style: AppStyles.quoteImage),
               Observer(builder: (_) {
-                if (controller.tweet.error != null) {
-                  return Txt(AppStrings.genericError, style: AppStyles.errorMsg);
-                }
+                  if (controller.tweet.error != null) {
+                    return _handleTweetError(controller.tweet.error);
+                  }
 
-                if (controller.tweet.value == null) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.radicalRed),
-                    ),
-                  );
-                }
+                  if (controller.tweet.value == null) {
+                    return _handleTweetLoading();
+                  }
 
-                return Txt(controller.tweet.value.content, style: AppStyles.tweetText);
-
-//                  if (state is GetTweetErrorInvalidURL) {
-//                    return Txt(AppStrings.invalidTweetURL, style: AppStyles.errorMsg);
-//                  }
+                  return _handleTweetSuccess(controller.tweet.value);
                 }
               ),
               GestureDetector(
@@ -64,6 +53,26 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
             ]
         )
     );
+  }
+
+  Widget _handleTweetSuccess(TweetModel tweetModel) {
+    return Txt(tweetModel.content, style: AppStyles.tweetText);
+  }
+
+  Widget _handleTweetLoading() {
+    return Center(
+      child: CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(AppColors.radicalRed),
+      ),
+    );
+  }
+
+  Widget _handleTweetError(error) {
+    if (error is InvalidTweetURLException) {
+      return Txt(AppStrings.invalidTweetURL, style: AppStyles.errorMsg);
+    }
+
+    return Txt(AppStrings.genericError, style: AppStyles.errorMsg);
   }
 
 }

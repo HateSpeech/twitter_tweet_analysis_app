@@ -30,7 +30,7 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
   
   @override
   Widget build(BuildContext context) {
-    var controller = Provider.of<TweetController>(context);
+    TweetController controller = Provider.of(context);
 
     return Parent(
         style: AppStyles.searchBox,

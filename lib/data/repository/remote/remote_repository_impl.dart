@@ -9,10 +9,12 @@ import 'package:twittertweetanalysisapp/domain/repository/remote/remote_reposito
 class RemoteRepositoryImpl extends RemoteRepository {
 
   @override
-  Future<TweetModel> getTweet({String tweetURL}) {
+  Future<TweetModel> getTweet({String tweetURL}) async {
+    await Future.delayed(Duration(seconds: 2)); // Simulate API call
+
     // TODO: Connect to API
     if (tweetURL == null) {
-      var tweet = TweetEntity(tweetURL, "1050118621198921728", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat mas");
+      var tweet = TweetEntity(tweetURL, "1050118621198921728", "This is a RANDOM(${Random.secure().nextInt(1000)}) tweet body from remote repository");
       return Future.value(tweet.asDomainModel());
     }
 
@@ -22,7 +24,7 @@ class RemoteRepositoryImpl extends RemoteRepository {
   }
 
   @override
-  Future<List<ClassificationModel>> getClassifications() {
+  Future<List<ClassificationModel>> getClassifications() async {
     // TODO: Connect to API
     var classificationList = List();
     classificationList.add(ClassificationEntity(0, "Classification A description;"));
