@@ -20,7 +20,13 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
+# Lint
+include: package:pedantic/analysis_options.yaml
+
 dependencies:
+  # Commons
+  pedantic: ^1.9.0
+
   # Data Layer
   rxdart: 0.24.0
   dio: ^3.0.9

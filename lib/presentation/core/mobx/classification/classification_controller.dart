@@ -1,8 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:twittertweetanalysisapp/domain/interactors/get_classifications.dart';
-import 'package:twittertweetanalysisapp/domain/interactors/get_tweet.dart';
 import 'package:twittertweetanalysisapp/presentation/model/Classification.dart';
-import 'package:twittertweetanalysisapp/presentation/model/Tweet.dart';
 
 part 'classification_controller.g.dart';
 

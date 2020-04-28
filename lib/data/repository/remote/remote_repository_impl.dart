@@ -1,4 +1,3 @@
-import 'package:twittertweetanalysisapp/data/entity/classification/classification_entity.dart';
 import 'package:twittertweetanalysisapp/data/repository/remote/services/remote_services.dart';
 import 'package:twittertweetanalysisapp/domain/model/classification_domain.dart';
 import 'package:twittertweetanalysisapp/domain/model/tweet_domain.dart';
