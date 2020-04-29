@@ -20,25 +20,25 @@ abstract class TweetBaseController with Store {
   }
 
   @observable
-  bool isCurrentURLValid = false;
+  bool isCurrentUrlValid = false;
 
   @observable
   ObservableFuture<Tweet> currentTweet;
 
   @action
-  validateTweetURL({String tweetURL}) {
+  validateTweetUrl({String tweetUrl}) {
     try {
-      isCurrentURLValid = _validateTweetUrl.withParms(tweetURL: tweetURL).execute();
+      isCurrentUrlValid = _validateTweetUrl.withParms(tweetUrl: tweetUrl).execute();
     }
     catch (_) {
-      isCurrentURLValid = false;
+      isCurrentUrlValid = false;
     }
   }
 
   @action
-  getSearchTweet({String tweetURL}) {
+  getSearchTweet({String tweetUrl}) {
     currentTweet = _getTweetFromUrl
-        .withParams(tweetURL: tweetURL)
+        .withParams(tweetUrl: tweetUrl)
         .execute()
         .then((domainModel) => Tweet(domainModel))
         .asObservable();

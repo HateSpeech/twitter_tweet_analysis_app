@@ -15,13 +15,13 @@ class RemoteServices {
   }
 
   /// Searchs for a specific tweet given an url
-  Future<TweetEntity> getSpecificTweet({String tweetURL}) async {
+  Future<TweetEntity> getSpecificTweet({String tweetUrl}) async {
     Response response = await _requestManager.dio.get("/specificTweet");
     return TweetEntity.fromJson(response.data);
   }
 
   /// Gets all classifications
-  Future<List<ClassificationEntity>> getClassifications({String tweetURL}) async {
+  Future<List<ClassificationEntity>> getClassifications() async {
     Response response = await _requestManager.dio.get("/classifications");
     var responseList = response.data as List;
     var mappedResponse = responseList.map((e) => ClassificationEntity.fromJson(e)).toList();

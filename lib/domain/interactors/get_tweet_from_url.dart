@@ -5,10 +5,10 @@ import 'package:twittertweetanalysisapp/domain/repository/local/local_repository
 import 'package:twittertweetanalysisapp/domain/repository/remote/remote_repository.dart';
 
 class GetTweetFromUrl implements AsyncInteractor<TweetDomain> {
-  String _tweetURL;
+  String _tweetUrl;
 
   // Interactors
-  ValidateTweetUrl _validateTweetURL;
+  ValidateTweetUrl _validateTweetUrl;
 
   @override
   LocalRepository localRepository;
@@ -16,18 +16,18 @@ class GetTweetFromUrl implements AsyncInteractor<TweetDomain> {
   @override
   RemoteRepository remoteRepository;
 
-  GetTweetFromUrl(this.localRepository, this.remoteRepository, this._validateTweetURL);
+  GetTweetFromUrl(this.localRepository, this.remoteRepository, this._validateTweetUrl);
 
   @override
   Future<TweetDomain> execute() {
-    _validateTweetURL.withParms(tweetURL: _tweetURL).execute();
+    _validateTweetUrl.withParms(tweetUrl: _tweetUrl).execute();
 
-    var remoteObject = remoteRepository.getTweet();
+    var remoteObject = remoteRepository.getTweetFromUrl(tweetUrl: _tweetUrl);
     return remoteObject;
   }
 
-  GetTweetFromUrl withParams({String tweetURL}) {
-    _tweetURL= tweetURL;
+  GetTweetFromUrl withParams({String tweetUrl}) {
+    _tweetUrl= tweetUrl;
     return this;
   }
 

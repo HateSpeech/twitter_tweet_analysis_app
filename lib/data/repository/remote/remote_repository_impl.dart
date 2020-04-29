@@ -9,15 +9,16 @@ class RemoteRepositoryImpl extends RemoteRepository {
   RemoteRepositoryImpl(this._remoteServices);
 
   @override
-  Future<TweetDomain> getTweet({String tweetURL}) async {
-    if (tweetURL == null) {
-      return _remoteServices
-          .getRandomTweet()
-          .then((entity) => entity.asDomainModel());
-    }
-
+  Future<TweetDomain> getTweet() async {
     return _remoteServices
-        .getSpecificTweet(tweetURL: tweetURL)
+        .getRandomTweet()
+        .then((entity) => entity.asDomainModel());
+  }
+
+  @override
+  Future<TweetDomain> getTweetFromUrl({String tweetUrl}) async {
+    return _remoteServices
+        .getSpecificTweet(tweetUrl: tweetUrl)
         .then((entity) => entity.asDomainModel());
   }
 

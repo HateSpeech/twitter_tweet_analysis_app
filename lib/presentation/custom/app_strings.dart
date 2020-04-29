@@ -19,6 +19,6 @@ class AppStrings {
   // Errors
   static get errorTitle => "Hmmm...";
   static get genericError => "Aconteceu algum erro! 🤔";
-  static get invalidTweetURL => "A URL digitada não é válida. 🧙";
+  static get invalidTweetUrl => "A URL digitada não é válida. 🧙";
 
 }

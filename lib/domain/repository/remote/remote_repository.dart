@@ -3,7 +3,8 @@ import 'package:twittertweetanalysisapp/domain/model/tweet_domain.dart';
 
 abstract class RemoteRepository {
 
-  Future<TweetDomain> getTweet({String tweetURL});
+  Future<TweetDomain> getTweet();
+  Future<TweetDomain> getTweetFromUrl({String tweetUrl});
   Future<List<ClassificationDomain>> getClassifications();
 
 }

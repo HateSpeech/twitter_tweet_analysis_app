@@ -9,22 +9,22 @@ part of 'tweet_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TweetController on TweetBaseController, Store {
-  final _$isCurrentURLValidAtom =
-      Atom(name: 'TweetBaseController.isCurrentURLValid');
+  final _$isCurrentUrlValidAtom =
+      Atom(name: 'TweetBaseController.isCurrentUrlValid');
 
   @override
-  bool get isCurrentURLValid {
-    _$isCurrentURLValidAtom.context.enforceReadPolicy(_$isCurrentURLValidAtom);
-    _$isCurrentURLValidAtom.reportObserved();
-    return super.isCurrentURLValid;
+  bool get isCurrentUrlValid {
+    _$isCurrentUrlValidAtom.context.enforceReadPolicy(_$isCurrentUrlValidAtom);
+    _$isCurrentUrlValidAtom.reportObserved();
+    return super.isCurrentUrlValid;
   }
 
   @override
-  set isCurrentURLValid(bool value) {
-    _$isCurrentURLValidAtom.context.conditionallyRunInAction(() {
-      super.isCurrentURLValid = value;
-      _$isCurrentURLValidAtom.reportChanged();
-    }, _$isCurrentURLValidAtom, name: '${_$isCurrentURLValidAtom.name}_set');
+  set isCurrentUrlValid(bool value) {
+    _$isCurrentUrlValidAtom.context.conditionallyRunInAction(() {
+      super.isCurrentUrlValid = value;
+      _$isCurrentUrlValidAtom.reportChanged();
+    }, _$isCurrentUrlValidAtom, name: '${_$isCurrentUrlValidAtom.name}_set');
   }
 
   final _$currentTweetAtom = Atom(name: 'TweetBaseController.currentTweet');
@@ -48,20 +48,20 @@ mixin _$TweetController on TweetBaseController, Store {
       ActionController(name: 'TweetBaseController');
 
   @override
-  dynamic validateTweetURL({String tweetURL}) {
+  dynamic validateTweetUrl({String tweetUrl}) {
     final _$actionInfo = _$TweetBaseControllerActionController.startAction();
     try {
-      return super.validateTweetURL(tweetURL: tweetURL);
+      return super.validateTweetUrl(tweetUrl: tweetUrl);
     } finally {
       _$TweetBaseControllerActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic getSearchTweet({String tweetURL}) {
+  dynamic getSearchTweet({String tweetUrl}) {
     final _$actionInfo = _$TweetBaseControllerActionController.startAction();
     try {
-      return super.getSearchTweet(tweetURL: tweetURL);
+      return super.getSearchTweet(tweetUrl: tweetUrl);
     } finally {
       _$TweetBaseControllerActionController.endAction(_$actionInfo);
     }
