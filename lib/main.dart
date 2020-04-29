@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:twittertweetanalysisapp/presentation/core/injection/injection.dart';
@@ -7,27 +8,31 @@ import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/view/pages/home/home_page.dart';
 
 void main() {
+  setupDependencyInjection();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    setupDependencyInjection();
-
     var providers = [
-      Provider<TweetController>(create: (_) => TweetController(getIt())),
+      Provider<TweetController>(create: (_) => TweetController(getIt(), getIt(), getIt())),
       Provider<ClassificationController>(create: (_) => ClassificationController(getIt()))
     ];
 
     return MultiProvider(
       providers: providers,
-      child: MaterialApp(
-      title: AppStrings.appName,
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: HomePage(),
+      child: BotToastInit(
+        child: MaterialApp(
+          title: AppStrings.appName,
+          theme: ThemeData(
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: HomePage(),
+          navigatorObservers: [
+            BotToastNavigatorObserver()
+          ]
+        ),
       ),
     );
   }

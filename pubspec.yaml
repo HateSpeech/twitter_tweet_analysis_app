@@ -25,6 +25,8 @@ include: package:pedantic/analysis_options.yaml
 
 dependencies:
   # Commons
+  provider: ^4.0.5+1
+  get_it: ^4.0.2
   pedantic: ^1.9.0
 
   # Data Layer
@@ -35,13 +37,12 @@ dependencies:
   # Domain Layer
 
   # Presentation Layer
+  mobx: ^0.4.0+1
+  flutter_mobx: ^0.3.6
   division: 0.8.8
   google_fonts: 0.6.2
   flutter_svg: 0.17.4
-  mobx: ^0.4.0+1
-  flutter_mobx: ^0.3.6
-  provider: ^4.0.5+1
-  get_it: ^4.0.2
+  bot_toast: ^2.4.1
 
   flutter:
     sdk: flutter

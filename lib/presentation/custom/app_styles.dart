@@ -91,9 +91,15 @@ class AppStyles {
   /// Images
   /// ---
   // SearchImage
-  static get searchImage => ParentStyle()
+  static get searchImageEnabled => ParentStyle()
     ..margin(top: 20, right: 20)
     ..alignment.topRight();
+  
+  // SearchImageDisabled
+  static get searchImageDisabled => ParentStyle()
+    ..margin(top: 20, right: 20)
+    ..alignment.topRight()
+    ..opacity(0.1);
 
   // QuoteImage
   static get quoteImage => ParentStyle()

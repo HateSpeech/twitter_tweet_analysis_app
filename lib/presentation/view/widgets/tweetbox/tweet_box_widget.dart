@@ -1,9 +1,9 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:twittertweetanalysisapp/domain/core/exceptions/invalid_tweet_url_exception.dart';
 import 'package:twittertweetanalysisapp/presentation/core/mobx/tweet/tweet_controller.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
@@ -21,10 +21,11 @@ class TweetBoxWidget extends StatefulWidget {
 }
 
 class _TweetBoxWidgetState extends State<TweetBoxWidget> {
+  TweetController tweetController;
   
   @override
   Widget build(BuildContext context) {
-    TweetController controller = Provider.of(context);
+    tweetController = Provider.of(context);
 
     return Parent(
         style: AppStyles.tweetBox,
@@ -32,19 +33,19 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
             children: [
               Parent(child: AppImages.quote, style: AppStyles.quoteImage),
               Observer(builder: (_) {
-                  if (controller.tweet.error != null) {
-                    return _handleTweetError(controller.tweet.error);
+                  if (tweetController.currentTweet.error != null) {
+                    return _handleTweetError(tweetController.currentTweet.error);
                   }
 
-                  if (controller.tweet.value == null) {
+                  if (tweetController.currentTweet.value == null) {
                     return _handleTweetLoading();
                   }
 
-                  return _handleTweetSuccess(controller.tweet.value);
+                  return _handleTweetSuccess(tweetController.currentTweet.value);
                 }
               ),
               GestureDetector(
-                  onTap: () => controller.getTweet(),
+                  onTap: () => tweetController.getTweet(),
                   child: Parent(
                       child: Tooltip(
                         message: AppStrings.nextTweetTooltip,
@@ -71,11 +72,8 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
   }
 
   Widget _handleTweetError(error) {
-    if (error is InvalidTweetURLException) {
-      return Txt(AppStrings.invalidTweetURL, style: AppStyles.errorMsg);
-    }
-
-    return Txt(AppStrings.genericError, style: AppStyles.errorMsg);
+    BotToast.showSimpleNotification(title: AppStrings.errorTitle, subTitle: AppStrings.genericError);
+    return Txt("");
   }
 
 }

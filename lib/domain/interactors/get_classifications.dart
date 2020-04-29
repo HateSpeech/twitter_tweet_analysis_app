@@ -15,11 +15,6 @@ class GetClassifications implements AsyncInteractor<List<ClassificationDomain>> 
 
   @override
   Future<List<ClassificationDomain>> execute() {
-    var cachedObjectList = localRepository.getList(ClassificationDomain.cacheKey);
-    if (cachedObjectList != null) {
-      return cachedObjectList;
-    }
-
     var remoteObjectList = remoteRepository.getClassifications();
     return remoteObjectList;
   }

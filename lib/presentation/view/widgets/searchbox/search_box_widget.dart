@@ -2,7 +2,6 @@ import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:twittertweetanalysisapp/domain/interactors/validate_twitter_url.dart';
 import 'package:twittertweetanalysisapp/presentation/core/mobx/tweet/tweet_controller.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
@@ -19,7 +18,7 @@ class SearchBoxWidget extends StatefulWidget {
 }
 
 class _SearchBoxWidgetState extends State<SearchBoxWidget> {
-
+  TweetController tweetController;
   final textEditingController = TextEditingController();
 
   @override
@@ -30,7 +29,7 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
   
   @override
   Widget build(BuildContext context) {
-    TweetController controller = Provider.of(context);
+    tweetController = Provider.of(context);
 
     return Parent(
         style: AppStyles.searchBox,
@@ -46,6 +45,7 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
                       hintStyle: AppStyles.searchBoxHint,
                       fillColor: AppColors.cultured,
                     ),
+                    onChanged: (value) => tweetController.validateTweetURL(tweetURL: value),
                     style: AppStyles.searchBoxText,
                     cursorColor: AppColors.radicalRed,
                     controller: textEditingController,
@@ -54,10 +54,10 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
                 style: AppStyles.searchBoxInput,
               ),
               GestureDetector(
-                  onTap: () => controller.getTweet(tweetURL: textEditingController.text),
+                  onTap: () => tweetController.isCurrentURLValid ? tweetController.getSearchTweet(tweetURL: textEditingController.text) : null,
                   child: Parent(
                       child: AppImages.search,
-                      style: AppStyles.searchImage,
+                      style: tweetController.isCurrentURLValid ? AppStyles.searchImageEnabled : AppStyles.searchImageDisabled,
                   )
               )
             ]

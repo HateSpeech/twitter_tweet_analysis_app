@@ -5,6 +5,7 @@ import 'package:twittertweetanalysisapp/data/repository/remote/remote_repository
 import 'package:twittertweetanalysisapp/data/repository/remote/services/remote_services.dart';
 import 'package:twittertweetanalysisapp/domain/interactors/get_classifications.dart';
 import 'package:twittertweetanalysisapp/domain/interactors/get_tweet.dart';
+import 'package:twittertweetanalysisapp/domain/interactors/get_tweet_from_url.dart';
 import 'package:twittertweetanalysisapp/domain/interactors/validate_twitter_url.dart';
 import 'package:twittertweetanalysisapp/domain/repository/local/local_repository.dart';
 import 'package:twittertweetanalysisapp/domain/repository/remote/remote_repository.dart';
@@ -42,8 +43,9 @@ _setupDataLayer() {
 _setupDomainLayer() {
 
   // Interactors
-  getIt.registerSingleton<ValidateTwitterURL>(ValidateTwitterURL());
-  getIt.registerSingleton<GetTweet>(GetTweet(getIt(), getIt(), getIt()));
+  getIt.registerSingleton<ValidateTweetUrl>(ValidateTweetUrl());
+  getIt.registerSingleton<GetTweet>(GetTweet(getIt(), getIt()));
+  getIt.registerSingleton<GetTweetFromUrl>(GetTweetFromUrl(getIt(), getIt(), getIt()));
   getIt.registerSingleton<GetClassifications>(GetClassifications(getIt(), getIt()));
 
 }

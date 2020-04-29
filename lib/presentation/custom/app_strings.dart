@@ -17,7 +17,8 @@ class AppStrings {
   static get analysisTooltip => "Avaliar";
 
   // Errors
-  static get genericError => "Oops.. Aconteceu algum erro! 🤔";
+  static get errorTitle => "Hmmm...";
+  static get genericError => "Aconteceu algum erro! 🤔";
   static get invalidTweetURL => "A URL digitada não é válida. 🧙";
 
 }
