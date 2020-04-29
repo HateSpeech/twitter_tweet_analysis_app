@@ -12,69 +12,86 @@ class AppStyles {
   /// ---
   /// Commons
   /// ---
-  static get _defaultRadius => 15.0;
+  static get _defaultRadius => 16.0;
+  static get _defaultFontFamily => GoogleFonts.raleway().fontFamily;
+
+  static get appName => TxtStyle()
+    ..fontSize(11)
+    ..fontFamily(_defaultFontFamily)
+    ..textColor(AppColors.cultured)
+    ..alignment.bottomLeft();
+
+  static get footer => TxtStyle()
+    ..fontSize(11)
+    ..fontFamily(_defaultFontFamily)
+    ..textColor(AppColors.cultured)
+    ..alignment.bottomLeft()
+    ..opacity(.3);
+  
+  static get verticalDivider => ParentStyle()
+    ..background.color(AppColors.cultured)
+    ..width(4)
+    ..height(160)
+    ..margin(all: 16)
+    ..borderRadius(all: _defaultRadius);
+
+  static get horizontalDivider => ParentStyle()
+    ..background.color(AppColors.cultured)
+    ..width(160)
+    ..height(4)
+    ..margin(all: 16)
+    ..borderRadius(all: _defaultRadius);
+
+  static get title => TxtStyle()
+    ..textColor(AppColors.cultured)
+    ..fontSize(32)
+    ..fontFamily(_defaultFontFamily)
+    ..alignmentContent.bottomLeft();
 
   /// ---
   /// Widgets
   /// ---
-  // HomePageTitle
-  static get homePageTitle => TxtStyle()
-    ..fontSize(11)
-    ..fontFamily(GoogleFonts.roboto().fontFamily)
-    ..textColor(AppColors.cultured)
-    ..alignment.topLeft()
-    ..margin(left: 16, bottom: 8);
-
-  // HomePageContainer
-  static get homePageContainer => ParentStyle()
-    ..maxWidth(500)
-    ..margin(left: 16, right: 16)
-    ..alignment.center();
-
   // SearchBoxWidget
   static get searchBox => ParentStyle()
-    ..height(80)
-    ..borderRadius(topLeft: _defaultRadius, topRight: _defaultRadius)
-    ..background.color(AppColors.cultured.withOpacity(0.1));
+    ..height(80);
 
   // SearchBoxInputWidget
   static get searchBoxInput => ParentStyle()
-    ..margin(top: 8, left: 22, right: 50);
+    ..margin(left: 8, right: 50);
 
   // SearchBoxTextWidget
   static get searchBoxText => TextStyle(
     color: AppColors.cultured,
-    fontFamily: GoogleFonts.roboto().fontFamily,
-    fontSize: 14
+    fontFamily: _defaultFontFamily,
+    fontSize: 24,
   );
 
   // SearchBoxHintWidget
   static get searchBoxHint => TextStyle(
-      color: AppColors.cultured.withOpacity(0.7),
-      fontFamily: GoogleFonts.roboto().fontFamily,
-      fontSize: 14
+      color: AppColors.cultured.withOpacity(0.2),
+      fontFamily: _defaultFontFamily,
+      fontSize: 32
   );
 
   // TweetBoxWidget
   static get tweetBox => ParentStyle()
-    ..height(200)
     ..borderRadius(all: _defaultRadius)
     ..background.color(AppColors.cultured)
-    ..margin(top: 57, bottom: 40);
+    ..margin(top: 57);
 
   // TweetTextWidget
   static get tweetText => TxtStyle()
     ..fontSize(16)
-    ..fontFamily(GoogleFonts.roboto().fontFamily)
+    ..fontFamily(_defaultFontFamily)
     ..alignment.center()
     ..textAlign.justify()
-    ..margin(all: 32)
-    ..textColor(AppColors.charcoal);
+    ..margin(left: 32, right: 32)
+    ..textColor(AppColors.gray1);
 
   // ErrorMsg
   static get errorMsg => TxtStyle()
     ..fontSize(16)
-    ..fontFamily(GoogleFonts.roboto().fontFamily)
+    ..fontFamily(_defaultFontFamily)
     ..alignment.center()
     ..textAlign.justify()
     ..margin(all: 32)
@@ -92,21 +109,22 @@ class AppStyles {
   /// ---
   // SearchImage
   static get searchImageEnabled => ParentStyle()
-    ..margin(top: 20, right: 20)
+    ..margin(top: 25, right: 20)
     ..alignment.topRight();
   
   // SearchImageDisabled
   static get searchImageDisabled => ParentStyle()
-    ..margin(top: 20, right: 20)
+    ..margin(top: 25, right: 20)
     ..alignment.topRight()
-    ..opacity(0.1);
+    ..opacity(0.2);
 
   // QuoteImage
   static get quoteImage => ParentStyle()
     ..width(30)
     ..height(30)
     ..margin(top: 15, left: 15)
-    ..opacity(0.07);
+    ..opacity(0.07)
+  ..alignment.topLeft();
 
   // SwipeRightImage
   static get swipeRightImage => ParentStyle()

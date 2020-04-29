@@ -29,20 +29,22 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
 
     return Parent(
         style: AppStyles.tweetBox,
-        child: Stack(
+        child: Column(
             children: [
               Parent(child: AppImages.quote, style: AppStyles.quoteImage),
-              Observer(builder: (_) {
-                  if (tweetController.currentTweet.error != null) {
-                    return _handleTweetError(tweetController.currentTweet.error);
-                  }
+              Expanded(
+                child: Observer(builder: (_) {
+                    if (tweetController.currentTweet.error != null) {
+                      return _handleTweetError(tweetController.currentTweet.error);
+                    }
 
-                  if (tweetController.currentTweet.value == null) {
-                    return _handleTweetLoading();
-                  }
+                    if (tweetController.currentTweet.value == null) {
+                      return _handleTweetLoading();
+                    }
 
-                  return _handleTweetSuccess(tweetController.currentTweet.value);
-                }
+                    return _handleTweetSuccess(tweetController.currentTweet.value);
+                  }
+                ),
               ),
               GestureDetector(
                   onTap: () => tweetController.getTweet(),
