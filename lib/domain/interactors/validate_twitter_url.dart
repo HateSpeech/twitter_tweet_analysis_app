@@ -5,7 +5,7 @@ import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 class ValidateTweetUrl implements SyncInteractor<bool> {
 
   String _twitterURL;
-  RegExp _regex = RegExp("http(?:s):\/\/((www|m|mobile)\.)?twitter\.com\/([A-Za-z0-9_]{1,15})\/status\/\d+");
+  RegExp _regex = RegExp(r"http(s)?:\/\/((www|m|mobile)\.)?twitter\.com\/([A-Za-z0-9_]{1,15})\/status\/\d+", multiLine: false, caseSensitive: false);
 
   ValidateTweetUrl();
 
