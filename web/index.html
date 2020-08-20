@@ -5,6 +5,9 @@
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Twitter tweets analysis app for my undergraduate thesis written in Dart (Flutter).">
 
+  <!-- Google Sign In -->
+  <meta name="google-signin-client_id" content="ADD-HERE.apps.googleusercontent.com">
+
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -14,10 +17,32 @@
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="favicon.png"/>
 
-  <title>twittertweetanalysisapp</title>
+  <title>Twitter Tweet Analysis App</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-performance.js"></script>
+
+  <!-- Firebase Init -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCIlAGXflRgwnwo9CrupZkM93tJTG7_jKw",
+      authDomain: "twitter-tweet-analysis-tcc.firebaseapp.com",
+      databaseURL: "https://twitter-tweet-analysis-tcc.firebaseio.com",
+      projectId: "twitter-tweet-analysis-tcc",
+      storageBucket: "twitter-tweet-analysis-tcc.appspot.com",
+      messagingSenderId: "351235119330",
+      appId: "1:351235119330:web:30d7f7a0105dc18330e6bb",
+      measurementId: "G-0HLDLPRSHD"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->

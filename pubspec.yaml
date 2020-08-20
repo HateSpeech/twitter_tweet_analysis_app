@@ -29,6 +29,12 @@ dependencies:
   get_it: ^4.0.2
   pedantic: ^1.9.0
 
+  # Firebase
+  google_sign_in: ^4.5.1
+  firebase_core: ^0.5.0
+  firebase_auth: ^0.18.0
+  uuid: ^2.0.2
+
   # Data Layer
   rxdart: 0.24.0
   dio: ^3.0.9

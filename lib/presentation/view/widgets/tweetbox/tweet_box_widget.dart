@@ -51,9 +51,9 @@ class _TweetBoxWidgetState extends State<TweetBoxWidget> {
                   child: Parent(
                       child: Tooltip(
                         message: AppStrings.nextTweetTooltip,
-                        child: AppImages.swipeRight
+                        child: AppImages.redo
                       ),
-                      style: AppStyles.swipeRightImage
+                      style: AppStyles.redoImage
                   )
               )
             ]

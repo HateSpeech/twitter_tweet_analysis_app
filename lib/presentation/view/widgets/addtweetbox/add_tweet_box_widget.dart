@@ -34,16 +34,16 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
 
     return Observer(builder: (_) {
         return Parent(
-            style: AppStyles.searchBox,
+            style: AppStyles.addTweetBox,
             child: Stack(
                 children: [
                   Parent(
                     child: Tooltip(
-                      message: AppStrings.searchTooltip,
+                      message: AppStrings.addTweetTooltip,
                       child: TextFormField(
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: AppStrings.searchTitle,
+                          hintText: AppStrings.addTweetTitle,
                           hintStyle: AppStyles.searchBoxHint,
                           fillColor: AppColors.cultured,
                         ),
@@ -53,13 +53,13 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
                         controller: textEditingController,
                       ),
                     ),
-                    style: AppStyles.searchBoxInput,
+                    style: AppStyles.addTweetBoxInput,
                   ),
                   GestureDetector(
                       onTap: () => tweetController.isCurrentUrlValid ? tweetController.getSearchTweet(tweetUrl: textEditingController.text) : null,
                       child: Parent(
-                        child: AppImages.search,
-                        style: tweetController.isCurrentUrlValid ? AppStyles.searchImageEnabled : AppStyles.searchImageDisabled,
+                        child: AppImages.addFolder,
+                        style: tweetController.isCurrentUrlValid ? AppStyles.addFolderImageEnabled : AppStyles.addFolderImageDisabled,
                       )
                   )
                 ]

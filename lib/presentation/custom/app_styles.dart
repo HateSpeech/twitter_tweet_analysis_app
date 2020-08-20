@@ -51,12 +51,12 @@ class AppStyles {
   /// ---
   /// Widgets
   /// ---
-  // SearchBoxWidget
-  static get searchBox => ParentStyle()
+  // AddTweetBoxWidget
+  static get addTweetBox => ParentStyle()
     ..height(80);
 
-  // SearchBoxInputWidget
-  static get searchBoxInput => ParentStyle()
+  // AddTweetBoxInputWidget
+  static get addTweetBoxInput => ParentStyle()
     ..margin(left: 8, right: 50);
 
   // SearchBoxTextWidget
@@ -107,14 +107,23 @@ class AppStyles {
   /// ---
   /// Images
   /// ---
-  // SearchImage
-  static get searchImageEnabled => ParentStyle()
-    ..margin(top: 25, right: 20)
+  // QuoteImage
+  static get twitterImage => ParentStyle()
+    ..width(15)
+    ..height(15)
+    ..margin(right: 8)
+    ..alignment.topLeft();
+
+  // AddFolderEnabled
+  static get addFolderImageEnabled => ParentStyle()
+    ..margin(top: 15, right: 15)
+    ..height(30)
     ..alignment.topRight();
   
-  // SearchImageDisabled
-  static get searchImageDisabled => ParentStyle()
-    ..margin(top: 25, right: 20)
+  // AddFolderEnabled
+  static get addFolderImageDisabled => ParentStyle()
+    ..margin(top: 15, right: 15)
+    ..height(30)
     ..alignment.topRight()
     ..opacity(0.2);
 
@@ -123,11 +132,10 @@ class AppStyles {
     ..width(30)
     ..height(30)
     ..margin(top: 15, left: 15)
-    ..opacity(0.07)
   ..alignment.topLeft();
 
   // SwipeRightImage
-  static get swipeRightImage => ParentStyle()
+  static get redoImage => ParentStyle()
     ..width(37)
     ..height(37)
     ..margin(bottom: 15, right: 15)

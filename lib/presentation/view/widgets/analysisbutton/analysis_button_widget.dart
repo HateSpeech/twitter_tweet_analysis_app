@@ -15,7 +15,7 @@ class AnalysisButtonWidget extends StatelessWidget {
       child: Parent(
         style: AppStyles.tweetAnalysisButton,
         child: Parent(
-          child: AppImages.test,
+          child: AppImages.editProperty,
           style: AppStyles.listImage,
         )
       )

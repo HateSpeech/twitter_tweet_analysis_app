@@ -2,9 +2,10 @@ import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_colors.dart';
+import 'package:twittertweetanalysisapp/presentation/custom/app_images.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_strings.dart';
 import 'package:twittertweetanalysisapp/presentation/custom/app_styles.dart';
-import 'package:twittertweetanalysisapp/presentation/view/widgets/searchbox/search_box_widget.dart';
+import 'package:twittertweetanalysisapp/presentation/view/widgets/addtweetbox//add_tweet_box_widget.dart';
 import 'package:twittertweetanalysisapp/presentation/view/widgets/tweetbox/tweet_box_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,7 +18,12 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             /// AppName
-            Txt(AppStrings.appName, style: AppStyles.appName),
+            Row(
+              children: [
+                Parent(child: AppImages.twitterLogo, style: AppStyles.twitterImage),
+                Txt(AppStrings.appName, style: AppStyles.appName),
+              ],
+            ),
             /// Structure
             Expanded(
               child: Row(
